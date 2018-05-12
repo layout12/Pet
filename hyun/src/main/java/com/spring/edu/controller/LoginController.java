@@ -10,7 +10,7 @@ public class LoginController {
 	
 	@RequestMapping("/")
 	public ModelAndView main(Model model, ModelAndView modelAndView) {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>¸ŞÀÎÆäÀÌÁö Á¢¼Ó");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>ë©”ì¸í˜ì´ì§€ì ‘ì†");
 		modelAndView.setViewName("index");
 		
 		return modelAndView;
