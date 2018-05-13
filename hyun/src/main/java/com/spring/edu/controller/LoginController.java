@@ -8,12 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	@RequestMapping("/")
-	public ModelAndView main(Model model, ModelAndView modelAndView) {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>메인페이지접속");
-		modelAndView.setViewName("index");
-		
-		return modelAndView;
-	}
+//	@RequestMapping("/")
+//	public ModelAndView main(Model model, ModelAndView modelAndView) {
+//		System.out.println(">>>>>>>>>>>>>>>>>>>>>메인페이지접속");
+//		modelAndView.setViewName("index");
+//		
+//		return modelAndView;
+//	}
 	
 }

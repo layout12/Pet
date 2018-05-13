@@ -29,5 +29,16 @@
     <aop:aspectj-autoproxy/>
     <beans:bean class="com.spring.edu.aop.AopLogHandler"/>
 	
+	<!-- tiles setting -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<beans:property name="order" value="0" />
+	</beans:bean>
 	
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:value>classpath:tiles/tiles.xml</beans:value>		
+		</beans:property>
+	</beans:bean>
+	<!-- end tiles setting -->
 </beans:beans>
