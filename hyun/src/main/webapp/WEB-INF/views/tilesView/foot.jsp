@@ -19,9 +19,9 @@
 				<div class="col-md-4">
 					<div class="block">
 						<h4>ADDRESS</h4>
-						<p ><i class="fa  fa-map-marker"></i> <span>adress:</span>경기도 고양시 덕양구</p>
+						<p ><i class="fa  fa-map-marker"></i> <span>Adress:</span>경기도 고양시 덕양구</p>
 						<p> <i class="fa  fa-phone"></i> <span>Phone:</span> 010 6351 4233 </p>
-						<p class="mail"><i class="fa  fa-envelope"></i>Eamil: <span>yuhyunjae12@naver.com</span></p>
+						<p class="mail"><i class="fa  fa-envelope"></i><span>Eamil:</span> yuhyunjae12@naver.com</p>
 					</div>	<!-- End Of /.block -->
 				</div> <!-- End Of Col-md-3 -->
 				<div class="col-md-4">

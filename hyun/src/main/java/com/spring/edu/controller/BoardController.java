@@ -9,7 +9,8 @@ public class BoardController {
 	
 	@RequestMapping("/")
 	public ModelAndView boardMain(ModelAndView modelAndView) {
-		modelAndView.setViewName("/main");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>메인페이지접속");
+		modelAndView.setViewName("/home");
 		return modelAndView;
 	}
 	@RequestMapping("/board/shop")

@@ -120,7 +120,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="#">
+					<a href="/">
 						<img src="/resources/images/logo.png" alt="logo">
 					</a>
 				</div>	<!-- End of /.col-md-12 -->
@@ -147,22 +147,13 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li class="active"><a href="/">HOME</a></li>
+		        	<!-- <li class="active"><a href="/">HOME</a></li> -->
+		        	<li><a href="#">INTRODUCE</a></li>
 					<li><a href="/board/shop">SHOP</a></li>
-					<li><a href="#">BLOG</a></li>
-					<li><a href="#">ARTICLE</a></li>
-					<li class="dropdown">
-						<a href="#">
-							PAGES
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-						   <li><a  href="#">Action</a></li>
-						    <li><a  href="#">Another action</a></li>
-						    <li><a  href="#">Something else here</a></li>
-						    <li><a  href="#">Separated link</a></li>
-						</ul>
-					</li> <!-- End of /.dropdown -->
+					<li><a href="#">REVIEW</a></li>
+					<li><a href="#">QnA</a></li>
+					<li><a href="#">SKILL</a></li>
+					<!-- End of /.dropdown -->
 
 					
 		        </ul> <!-- End of /.nav-main -->
