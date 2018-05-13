@@ -7,7 +7,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
-					<p class="contact-action"><i class="fa fa-phone-square"></i>IN CASE OF ANY QUESTIONS, CALL THIS NUMBER: <strong>+565 975 658</strong></p>
+					<p class="contact-action"><i class="fa fa-phone-square"></i></p>
 				</div>
 				<div class="col-md-3 clearfix">
 					<ul class="login-cart">
@@ -17,7 +17,7 @@
 								Login
 							</a>
 						</li>
-						<li>
+<!-- 						<li>
 							<div class="cart dropdown">
 						  		<a data-toggle="dropdown" href="#"><i class="fa fa-shopping-cart"></i>Cart(1)</a>
 					  			<div class="dropdown-menu dropup">
@@ -35,19 +35,19 @@
 									<button class="btn btn-primary btn-sm">Checkout</button>
 							    </div>
 							</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
-				<div class="col-md-2">
+				<!-- <div class="col-md-2">
 					<div class="search-box">
 						<div class="input-group">
 					    	<input placeholder="Search Here" type="text" class="form-control">
 					      	<span class="input-group-btn">
 					        	<button class="btn btn-default" type="button"></button>
 					      	</span>
-					    </div><!-- /.input-group -->
-					</div><!-- /.search-box -->
-				</div>
+					    </div>/.input-group
+					</div>/.search-box
+				</div> -->
 			</div> <!-- End Of /.row -->
 		</div>	<!-- End Of /.Container -->
 
@@ -60,41 +60,41 @@
 		    	<div class="modal-content">
 		    		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title" id="myModalLabel">Introduce Yourself</h4>
+		        		<h4 class="modal-title" id="myModalLabel">로그인/회원가입</h4>
 		      		</div>
 			      	<div class="modal-body clearfix">
 
 						<form action="#" method="post" id="create-account_form" class="std">
 							<fieldset>
-								<h3>Create your account</h3>
+								<h3>회원 가입</h3>
 								<div class="form_content clearfix">
-									<h4>Enter your e-mail address to create an account.</h4>
+									<h4>계정을 만들려면 메일 주소를 입력해주세요</h4>
 									<p class="text">
 										<label for="email_create">E-mail address</label>
 										<span>
-											<input placeholder="E-mail address"  type="text" id="email_create" name="email_create" value="" class="account_input">
+											<input placeholder="이메일을 입력해주세요"  type="text" id="email_create" name="email_create" value="" class="account_input">
 					                    </span>
 									</p>
 									<p class="submit">
-										<button class="btn btn-primary">Create Your Account</button>
+										<button class="btn btn-primary">회원 가입</button>
 									</p>
 								</div>
 							</fieldset>
 						</form>
 			      		<form action="" method="post" id="login_form" class="std">
 							<fieldset>
-								<h3>Already registered?</h3>
+								<h3>로그인</h3>
 								<div class="form_content clearfix">
 									<p class="text">
 									<label for="email">E-mail address</label>
-										<span><input placeholder="E-mail address" type="text" id="email" name="email" value="" class="account_input"></span>
+										<span><input placeholder="이메일을 입력해주세요" type="text" id="email" name="email" value="" class="account_input"></span>
 									</p>
 									<p class="text">
 									<label for="passwd">Password</label>
-										<span><input placeholder="Password" type="password" id="passwd" name="passwd" value="" class="account_input"></span>
+										<span><input placeholder="비밀번호를 입력해주세요" type="password" id="passwd" name="passwd" value="" class="account_input"></span>
 									</p>
 									<p class="lost_password">
-										<a href="#popab-password-reset" class="popab-password-link">Forgot your password?</a>
+										<a href="#popab-password-reset" class="popab-password-link">비밀 번호 찾기</a>
 									</p>
 									<p class="submit">
 										<button class="btn btn-success">Log in</button>
@@ -147,7 +147,7 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li class="active"><a href="#">HOME</a></li>
+		        	<li class="active"><a href="/">HOME</a></li>
 					<li><a href="products.html">SHOP</a></li>
 					<li><a href="blog.html">BLOG</a></li>
 					<li><a href="blog-single.html">ARTICLE</a></li>

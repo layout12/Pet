@@ -12,47 +12,16 @@
 							<img src="/resources/images/footer-logo.png" alt="">
 						</a>
 						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+							portfolio
 						</p>
-						<h4 class="connect-heading">CONNECT WITH US</h4>
-						<ul class="social-icon">
-							<li>
-								<a class="facebook-icon" href="#">
-									<i class="fa fa-facebook"></i>
-								</a>
-							</li>
-							<li>
-								<a class="plus-icon" href="#">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</li>
-							<li>
-								<a class="twitter-icon" href="#">
-									<i class="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li>
-								<a class="pinterest-icon" href="#">
-									<i class="fa fa-pinterest"></i>
-								</a>
-							</li>
-							<li>
-								<a class="linkedin-icon" href="#">
-									<i class="fa fa-linkedin"></i>
-								</a>
-							</li>
-						</ul>	<!-- End Of /.social-icon -->
 					</div>	<!-- End Of /.block -->
 				</div> <!-- End Of /.Col-md-4 -->
 				<div class="col-md-4">
 					<div class="block">
 						<h4>GET IN TOUCH</h4>
-						<p ><i class="fa  fa-map-marker"></i> <span>Food Code d.o.o.,</span>1000 Ljubljana Celovska cesta 135, Slovenia</p>
-						<p> <i class="fa  fa-phone"></i> <span>Phone:</span> (+386) 40 123 456 </p>
-
-						<p> <i class="fa  fa-mobile"></i> <span>Mobile:</span> (+386) 40 654 123 651</p>
- 
-						<p class="mail"><i class="fa  fa-envelope"></i>Eamil: <span>info@sitename.com</span></p>
+						<p ><i class="fa  fa-map-marker"></i> <span>adress:</span>경기도 고양시 덕양구</p>
+						<p> <i class="fa  fa-phone"></i> <span>Phone:</span> 010 6351 4233 </p>
+						<p class="mail"><i class="fa  fa-envelope"></i>Eamil: <span>yuhyunjae12@naver.com</span></p>
 					</div>	<!-- End Of /.block -->
 				</div> <!-- End Of Col-md-3 -->
 				<div class="col-md-4">
@@ -119,7 +88,7 @@
 								</a>
 							</li>
 						</ul>
-						<p class="copyright-text pull-right">Food Code @2013 Designed by <a href="http://www.themexpert.com">Themexpert</a> All Rights Reserved</p>
+						<p class="copyright-text pull-right">YuHyunJae portfolio - Copyright 2018</p>
 					</div>	<!-- End Of /.col-md-12 -->	
 				</div>	<!-- End Of /.row -->	
 			</div>	<!-- End Of /.container -->	
