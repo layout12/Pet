@@ -148,9 +148,9 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
 		        	<li class="active"><a href="/">HOME</a></li>
-					<li><a href="products.html">SHOP</a></li>
-					<li><a href="blog.html">BLOG</a></li>
-					<li><a href="blog-single.html">ARTICLE</a></li>
+					<li><a href="/board/shop">SHOP</a></li>
+					<li><a href="#">BLOG</a></li>
+					<li><a href="#">ARTICLE</a></li>
 					<li class="dropdown">
 						<a href="#">
 							PAGES

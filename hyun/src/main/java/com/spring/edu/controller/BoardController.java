@@ -12,4 +12,9 @@ public class BoardController {
 		modelAndView.setViewName("/main");
 		return modelAndView;
 	}
+	@RequestMapping("/board/shop")
+	public ModelAndView boardShop(ModelAndView modelAndView) {
+		modelAndView.setViewName("/board/shop");
+		return modelAndView;
+	}
 }
