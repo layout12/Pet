@@ -149,7 +149,7 @@
 		      	<ul class="nav navbar-nav nav-main">
 		        	<!-- <li class="active"><a href="/">HOME</a></li> -->
 		        	<li><a href="#">INTRODUCE</a></li>
-					<li><a href="/board/shop">SHOP</a></li>
+					<li><a href="/product/shop">SHOP</a></li>
 					<li><a href="#">REVIEW</a></li>
 					<li><a href="#">QnA</a></li>
 					<li><a href="#">SKILL</a></li>
