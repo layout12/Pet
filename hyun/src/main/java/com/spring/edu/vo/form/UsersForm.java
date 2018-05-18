@@ -43,4 +43,5 @@ public class UsersForm {
 	   
 	   /*회원탈퇴여부*/
 	   private String uYn;
+	   
 }

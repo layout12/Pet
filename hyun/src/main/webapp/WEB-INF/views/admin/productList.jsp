@@ -40,16 +40,16 @@
 		<c:otherwise>
 			  		<c:forEach items="${productList }" var="productList">
 			  			<tr>
-			  				<td>${productList.pNo}</td>
-			  				<td>${productList.pName}</td>
-			  				<td>${productList.pGender}</td>
-			  				<td>${productList.pKind}</td>
-			  				<td>${productList.pPrice}</td>
-			  				<td>${productList.pSale}</td>
-			  				<td>${productList.pVaccine}</td>
-			  				<td>${productList.pBirth}</td>
-			  				<td>${productList.pImg}</td>
-			  				<td>${productList.pRegdate}</td>
+			  				<td>${productList.pdNo}</td>
+			  				<td>${productList.pdName}</td>
+			  				<td>${productList.pdGender}</td>
+			  				<td>${productList.pdKind}</td>
+			  				<td>${productList.pdPrice}</td>
+			  				<td>${productList.pdSale}</td>
+			  				<td>${productList.pdVaccine}</td>
+			  				<td>${productList.pdBirth}</td>
+			  				<td>${productList.pdImg}</td>
+			  				<td>${productList.pdRegdate}</td>
 			  			</tr>
 			  		</c:forEach>
 			  	</c:otherwise>

@@ -7,34 +7,34 @@ import lombok.Data;
 public class ProductVo {
 	
 	/*상품번호*/
-	private int pNo;
+	private int pdNo;
 	
 	/*상품이름*/
-	private String pName;
+	private String pdName;
 
 	/*상품성별*/
-	private String pGender;
+	private String pdGender;
 	
 	/*상품품종*/
-	private String pKind;
+	private String pdKind;
 	
 	/*상품가격*/
-	private int pPrice;
+	private int pdPrice;
 	
 	/*상품분양유무*/
-	private String pSale;
+	private String pdSale;
 	
 	/*상품예방접종*/
-	private String pVaccine;
+	private String pdVaccine;
 	
 	/*상품생년월일*/
-	private String pBirth;
+	private String pdBirth;
 	
 	/*상품이미지*/
-	private String pImg;
+	private String pdImg;
 	
 	/*상품등록일*/
-	private Date pRegdate;
+	private Date pdRegdate;
 	
 
 }

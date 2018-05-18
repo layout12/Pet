@@ -1,5 +1,5 @@
 package com.spring.edu.dao;
 
-public interface BoardDao {
+public interface ReviewDao {
 
 }

@@ -3,6 +3,6 @@ package com.spring.edu.vo;
 import lombok.Data;
 
 @Data
-public class BoardVo {
+public class ReviewVo {
 
 }

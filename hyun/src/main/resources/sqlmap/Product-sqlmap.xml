@@ -4,16 +4,16 @@
 
 <select id="productList" resultType="ProductVo">
 SELECT
-	P_NO
-	,P_NAME
-	,P_GENDER
-	,P_KIND
-	,P_PRICE
-	,P_SALE
-	,P_VACCINE
-	,P_BIRTH
-	,P_IMG
-	,P_REGDATE
+	 PD_NO
+	,PD_NAME
+	,PD_GENDER
+	,PD_KIND
+	,PD_PRICE
+	,PD_SALE
+	,PD_VACCINE
+	,PD_BIRTH
+	,PD_IMG
+	,PD_REGDATE
 	FROM PRODUCT
 </select>
 

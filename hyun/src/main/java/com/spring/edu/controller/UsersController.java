@@ -15,7 +15,7 @@ import com.spring.edu.service.UsersService;
 import com.spring.edu.vo.form.UsersForm;
 
 @Controller
-public class LoginController {
+public class UsersController {
 	
 //	@RequestMapping("/")
 //	public ModelAndView main(Model model, ModelAndView modelAndView) {
