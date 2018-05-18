@@ -17,7 +17,7 @@
 				</div>	<!-- End of /.col-md-4 -->
 				<div class="col-md-8 hidden-xs">
 					<ol class="breadcrumb pull-right">
-					  	<li><a href="#">Home</a></li>
+					  	<li><a href="/">Home</a></li>
 					  	<li class="active">Shop</li>
 					</ol>
 				</div>	<!-- End of /.col-md-8 -->

@@ -28,6 +28,10 @@
 	<!-- 어노테이션 AspectJ를 이용하기 위한 설정 -->
     <aop:aspectj-autoproxy/>
     <beans:bean class="com.spring.edu.aop.AopLogHandler"/>
+    <aop:aspectj-autoproxy /> <!-- 추가 -->
+	<aop:config proxy-target-class="true">
+	  <aop:pointcut id="controllerOperation" expression="execution(public * com.spring.edu..*contorller.*(..))" />
+    </aop:config>
 	
 	<!-- tiles setting -->
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">

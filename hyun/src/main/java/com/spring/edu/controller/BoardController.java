@@ -13,9 +13,5 @@ public class BoardController {
 		modelAndView.setViewName("/home");
 		return modelAndView;
 	}
-	@RequestMapping("/product/shop")
-	public ModelAndView boardShop(ModelAndView modelAndView) {
-		modelAndView.setViewName("/product/shop");
-		return modelAndView;
-	}
+
 }

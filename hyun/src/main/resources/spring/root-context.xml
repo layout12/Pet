@@ -13,12 +13,14 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-        <property name="username" value="hr"/>
-        <property name="password" value="hr"/>
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+        id="dataSource">
+        <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
+        <property value="jdbc:oracle:thin:@localhost:1521:ORCL" name="url" />
+        <property value="hr" name="username" />
+        <property value="hr" name="password" />
     </bean>
+
 
 
      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
