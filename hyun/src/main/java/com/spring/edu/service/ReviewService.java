@@ -1,5 +1,9 @@
 package com.spring.edu.service;
 
-public interface ReviewService {
+import java.util.List;
 
+import com.spring.edu.vo.ReviewVo;
+
+public interface ReviewService {
+	List<ReviewVo> listAll() throws Exception;
 }
