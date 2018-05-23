@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.edu.dao.ReviewDao;
 import com.spring.edu.service.ReviewService;
@@ -17,8 +18,14 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public List<ReviewVo> listAll()throws Exception {
-		return dao.listAll();
+		return dao.listAll();	
 	}
 
+	@Override
+	public void regist(ReviewVo vo) throws Exception {
+		dao.create(vo);
+	}
+	
+	
 	
 }
