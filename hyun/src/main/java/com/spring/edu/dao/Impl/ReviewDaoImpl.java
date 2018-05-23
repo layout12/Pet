@@ -18,9 +18,9 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public void create(ReviewVo vo) throws Exception {
-		
+		session.insert(namespace+"create",vo);
 	}
-
+	/*
 	@Override
 	public ReviewVo read(Integer br_no) throws Exception {
 		return null;
@@ -34,12 +34,13 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public void delete(Integer br_no) throws Exception {
 		
-	}
+	}*/
 
 	@Override
 	public List<ReviewVo> listAll() throws Exception {
-		List<ReviewVo> list = session.selectList(namespace+"listAll");
-		return list;
+		return session.selectList(namespace+"listAll");
+		
 	}
+
 	
 }
