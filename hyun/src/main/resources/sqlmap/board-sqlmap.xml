@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="board">
+<mapper namespace="review">
+
 	<select id="listAll" resultType="reviewVo">
 	<![CDATA[
-	SELECT
-		REVIEWSEQ.NEXTVAL,
-		br_title,
-		ur_id,
-		br_date,
-		br_hits
-	FROM
-		REVIEW
-	WHERE
-		br_en='N'
-	ORDER BY br_no DESC, br_date DESC
+	SELECT * FROM REVIEW
 	]]>
 	</select>
+	
+	<insert id="create" parameterType="reviewVo">
+	INSERT INTO REVIEW VALUES
+	(REVIEWSEQ.NEXTVAL
+	,'test'
+	,#{brTitle}
+	,#{brContent}
+	,SYSDATE
+	,1
+	,2
+	,'N')
+	</insert>
 
 </mapper>
