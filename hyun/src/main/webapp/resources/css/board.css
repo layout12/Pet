@@ -1,0 +1,8 @@
+@charset "EUC-KR";
+
+/*부트스트랩용 css외에 다른 css 스타일은 만든이 구분자를 앞에 넣어줌. 여기선 ly12*/
+
+/*----------board Common Css-----------*/
+.ly12-mgB65{margin-bottom:65px;}
+.ly12-btnR{float:right;}
+.ly12-tblTextC{text-align: center;}
