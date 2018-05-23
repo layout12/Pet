@@ -7,26 +7,28 @@ import lombok.Data;
 public class ReviewVo {
 	
 	/*게시판 번호*/
-	private int br_no;
+	private int brNo;
 	
 	/*게시판 아이디*/
-	private String ur_id;
+	private String urId;
 	
 	/*게시판 제목*/
-	private String br_title;
+	private String brTitle;
 	
 	/*게시판 내용*/
-	private String br_content;
+	private String brContent;
 	
 	/*게시판 날짜*/
-	private Date br_date;
+	private Date brDate;
 	
 	/*게시판 조회수*/
-	private int br_hits;
+	private int brHits;
 	
 	/*게시판 부모번호(답글을 위한)*/
-	private int br_prno;
+	private int brPrno;
 	
 	/*게시판 삭제여부*/
-	private char br_en;
+	private char brEn;
+	
 }
+
