@@ -23,6 +23,8 @@
 <!-- 	<link rel="stylesheet" href="/resources/css/font-awesome.min.css"> -->
 	<link rel="stylesheet" href="/resources/css/style.css">
 	<link rel="stylesheet" href="/resources/css/responsive.css">
+	<!-- 게시판용 css추가 -->
+	<link rel="stylesheet" href="/resources/css/board.css">
 
 	<!-- jS -->
 	<script src="/resources/js/jquery.min.js" type="text/javascript"></script>
