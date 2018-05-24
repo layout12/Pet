@@ -56,10 +56,10 @@
 									<c:forEach items="${listAll }" var="listAll">
 									<tr>
 										<td>${listAll.brNo }</td>
-										<td>${listAll.brTitle }</td>
+										<td><a href="/review/read?br_no=${listAll.brNo}">${listAll.brTitle }</a></td>
 										<td>${listAll.urId}</td>
 										<td><fmt:formatDate value="${listAll.brDate }" pattern="yyyy.MM.dd" /></td>
-										<td>${listAll.brHits }</td>										
+										<td>${listAll.brHits }</td>	
 									</tr>
 									</c:forEach>
 								</c:otherwise>
