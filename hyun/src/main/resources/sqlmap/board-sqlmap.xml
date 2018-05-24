@@ -6,20 +6,47 @@
 
 	<select id="listAll" resultType="reviewVo">
 	<![CDATA[
-	SELECT * FROM REVIEW
+	SELECT * FROM REVIEW	
+	WHERE br_en='Y'
+	ORDER BY 
+	br_no DESC, br_date DESC
 	]]>
 	</select>
 	
 	<insert id="create" parameterType="reviewVo">
 	INSERT INTO REVIEW VALUES
 	(REVIEWSEQ.NEXTVAL
-	,'test'
+	,#{urId}
 	,#{brTitle}
 	,#{brContent}
 	,SYSDATE
 	,1
 	,2
-	,'N')
+	,'Y')
 	</insert>
+	
+	<select id="read" resultType="reviewVo">
+	SELECT
+	*
+	FROM REVIEW
+	WHERE 
+	br_no=#{brNo}	
+	</select>
+	
+	<update id="update" parameterType="reviewVo">
+	UPDATE REVIEW SET 
+	br_title=#{brTitle}
+	,br_content=#{brContent}
+	,br_date=SYSDATE
+	WHERE 
+	br_no=#{brNo}
+	</update>
+	
+	<update id="delete" parameterType="int">
+	UPDATE REVIEW SET 
+	br_en='N'
+	WHERE 
+	br_no=#{brNo}
+	</update>
 
 </mapper>
