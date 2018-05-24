@@ -26,15 +26,9 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">작성자</label>
 								<div class="col-sm-10">
-	      							<p class="form-control-static">admin</p>
+	      							<input type="text" name="urId" class="form-control">
 	    						</div>						
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">작성일</label>
-								<div class="col-sm-10">
-									<p class="form-control-static"><fmt:formatDate value="${listAll.brDate }" pattern="yyyy.MM.dd" /></p>
-								</div>
-							</div>						
+							</div>											
 							<div class="form-group">
 								<label class="col-sm-2 control-label">제목</label>
 								<div class="col-sm-10">
