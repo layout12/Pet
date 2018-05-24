@@ -25,6 +25,23 @@ public class ReviewServiceImpl implements ReviewService {
 	public void regist(ReviewVo vo) throws Exception {
 		dao.create(vo);
 	}
+
+	@Override
+	public ReviewVo read(int brNo) throws Exception {
+		return dao.read(brNo);
+	}
+
+	@Override
+	public void update(ReviewVo vo) throws Exception {
+		dao.update(vo);
+	}
+
+	@Override
+	public void delete(int brNo) throws Exception {
+		dao.delete(brNo);
+	}
+	
+	
 	
 	
 	

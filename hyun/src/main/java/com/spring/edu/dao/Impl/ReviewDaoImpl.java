@@ -20,21 +20,21 @@ public class ReviewDaoImpl implements ReviewDao {
 	public void create(ReviewVo vo) throws Exception {
 		session.insert(namespace+"create",vo);
 	}
-	/*
+	
 	@Override
-	public ReviewVo read(Integer br_no) throws Exception {
-		return null;
+	public ReviewVo read(int brNo) throws Exception {
+		return session.selectOne(namespace+"read",brNo);
 	}
-
+	
 	@Override
 	public void update(ReviewVo vo) throws Exception {
-		
+		session.update(namespace+"update",vo);
 	}
 
 	@Override
-	public void delete(Integer br_no) throws Exception {
-		
-	}*/
+	public void delete(int brNo) throws Exception {
+		session.delete(namespace+"delete",brNo);
+	}
 
 	@Override
 	public List<ReviewVo> listAll() throws Exception {
