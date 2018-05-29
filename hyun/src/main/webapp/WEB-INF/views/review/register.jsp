@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,18 +32,18 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">제목</label>
 								<div class="col-sm-10">
-	      							 <input type="text" name="brTitle" class="form-control" placeholder="제목입력해주세요">
+	      							 <input type="text" name="brTitle" class="form-control" placeholder="제목을 입력해주세요">
 	    						</div>						
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">내용</label>
 								<div class="col-sm-10">
-	      							 <textarea name="brContent" class="form-control" rows="3"></textarea>
+	      							 <textarea name="brContent" class="form-control" rows="3" placeholder="내용을 입력해주세요"></textarea>
 	    						</div>						
 							</div>
 						</div>	
 						<button type="submit" class="btn btn-primary">등록</button>
-						<button type="reset" class="btn btn-default ly12-btnR">취소</button>				
+						<button type="reset" class="btn btn-default ly12-btnR ly12-cancel" onclick="location.href='review/listPaging'">취소</button>				
 					</div>						
 				</form>
 			</div>			
