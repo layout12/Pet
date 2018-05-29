@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,6 +15,22 @@
 		$("#ly12-readForm").hide();
 		$("#ly12-updateForm").show();
 	}
+	
+	function readForm(){
+		$("#ly12-readForm").show();
+		$("#ly12-updateForm").hide();
+	}
+	$(document).ready(function(){
+		/*상세페이지에서 바로 전 목록페이지로 넘어갈 때 정보유지한채 넘김 */
+		var formObj=$("form[role='form']");
+		console.log(formObj);
+		
+		$(".ly12-goList").on("click",function(){
+			formObj.attr("method","get");
+			formObj.attr("action","/review/listPaging");
+			formObj.submit();
+		});
+	});
 </script>
 </head>
 <body>
@@ -31,8 +47,10 @@
 			<div class="row ly12-mgB65">
 				<!-- 게시판 상세글 영역-->
 				<div id="ly12-readForm">
-					<form role="form" method="post" action="/review/delete">
-					<input type="hidden" name="brNo" value="${read.brNo }">					
+					<form role="form" method="post" action="/review/delete">				
+						<input type="hidden" name="page" value="${cri.page }">
+						<input type="hidden" name="perPageNum" value="${cri.perPageNum }">	
+						<input type="hidden" name="brNo" value="${read.brNo }">				
 						<div class="col-md-12">					
 							<div class="form-horizontal">
 								<div class="form-group">
@@ -68,15 +86,17 @@
 							</div>	
 							<button type="button" class="btn btn-warning" onclick="updateForm();">수정</button>
 							<button type="submit" class="btn btn-danger">삭제</button>
-							<button type="button" class="btn btn-primary ly12-btnR" onclick="location.href='/review/listAll'">목록</button>				
+							<button type="submit" class="btn btn-primary ly12-btnR ly12-goList">목록</button>				
 						</div>						
 					</form>
 				</div>
 				<!--// 게시판 상세글 영역-->
 				<!-- 게시판 수정 영역-->
 				<div id="ly12-updateForm">
-					<form role="form" method="post">
-					<input type="hidden" name="brNo" value="${read.brNo }">
+					<form role="form" method="post">					
+						<input type="hidden" name="page" value="${cri.page }">
+						<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
+						<input type="hidden" name="brNo" value="${read.brNo }">
 						<div class="col-md-12">					
 							<div class="form-horizontal">
 								<div class="form-group">
@@ -111,7 +131,7 @@
 								</div>
 							</div>	
 							<button type="submit" class="btn btn-primary">수정완료</button>
-							<button type="button" class="btn btn-warning" onclick="location.href='/review/listAll'">취소</button>
+							<button type="button" class="btn btn-warning" onclick="readForm();">취소</button>
 						</div>						
 					</form>
 				</div>
