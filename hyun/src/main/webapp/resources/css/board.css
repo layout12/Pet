@@ -5,4 +5,4 @@
 /*----------board Common Css-----------*/
 .ly12-mgB65{margin-bottom:65px;}
 .ly12-btnR{float:right;}
-.ly12-tblTextC{text-align: center;}
+.ly12-th>tr>th,.ly12-tblTextC{text-align: center;}
