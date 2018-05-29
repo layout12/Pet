@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="board">
+<mapper namespace="review">
+	<insert id="create" parameterType="ReviewVo">
+	INSERT INTO 
+		REVIEW 
+	VALUES
+		(REVIEWSEQ.NEXTVAL
+		,#{urId}
+		,#{brTitle}
+		,#{brContent}
+		,SYSDATE
+		,1
+		,2
+		,'Y')
+	</insert>
+	
+	<select id="read" resultType="ReviewVo">
+	SELECT
+		*
+	FROM 
+		REVIEW
+	WHERE 
+		br_no=#{brNo}	
+	</select>
+	
+	<update id="update" parameterType="ReviewVo">
+	UPDATE 
+		REVIEW 
+	SET 
+		br_title=#{brTitle}
+		,br_content=#{brContent}
+		,br_date=SYSDATE
+	WHERE 
+		br_no=#{brNo}
+	</update>
+	
+	<update id="delete" parameterType="int">
+	UPDATE 
+		REVIEW 
+	SET 
+		br_en='N'
+	WHERE 
+		br_no=#{brNo}
+	</update>
+	
+	<select id="listPaging" resultType="ReviewVo">
+	<![CDATA[
+	SELECT 
+	B.RNUM, B.*
+	FROM(
+    	 SELECT 
+    	 ROWNUM AS RNUM, A.*
+    	 FROM(
+         	  SELECT *
+         	  FROM REVIEW
+         	  WHERE br_en='Y'
+              ORDER BY br_no DESC, BR_DATE DESC)A
+         WHERE ROWNUM <=#{page}*#{perPageNum})B
+    WHERE B.RNUM >=#{page}*10-9
+	]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+	SELECT 
+		COUNT(br_no)
+	FROM
+		REVIEW
+	WHERE
+		br_no > 0	
+	]]>
+	</select>
 
 </mapper>
