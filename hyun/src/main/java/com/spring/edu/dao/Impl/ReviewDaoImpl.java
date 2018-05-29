@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.edu.dao.ReviewDao;
+import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
 
 @Repository
@@ -37,10 +38,18 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewVo> listAll() throws Exception {
-		return session.selectList(namespace+"listAll");
-		
+	public List<ReviewVo> listPaging(BoardCriteria cri) throws Exception {
+		return session.selectList(namespace+"listPaging",cri);
 	}
+
+	@Override
+	public int countPaging(BoardCriteria cri) throws Exception {
+		return session.selectOne(namespace+"countPaging",cri);
+	}
+	
+	
+	
+	
 
 	
 }

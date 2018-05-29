@@ -8,18 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.edu.dao.ReviewDao;
 import com.spring.edu.service.ReviewService;
+import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-
+	
 	@Autowired
 	private ReviewDao dao;
-	
-	@Override
-	public List<ReviewVo> listAll()throws Exception {
-		return dao.listAll();	
-	}
 
 	@Override
 	public void regist(ReviewVo vo) throws Exception {
@@ -42,7 +38,18 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	
+	@Override
+	public List<ReviewVo> listPaging(BoardCriteria cri) throws Exception {
+		return dao.listPaging(cri);
+	}
+
+	@Override
+	public int countPaging(BoardCriteria cri) throws Exception {
+		return dao.countPaging(cri);
+	}
+
 	
 	
-	
+
+
 }
