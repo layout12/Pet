@@ -3,6 +3,42 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="review">
+	<sql id="search">
+		<if test="searchType !=null">
+			<if test="searchType == 't'.toString()">
+				AND 
+					br_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'c'.toString()">
+				AND 
+					br_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'w'.toString()">
+				AND 
+					ur_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				AND
+					br_title LIKE '%'||#{keyword}||'%'
+				OR
+					br_content LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				AND
+					br_content LIKE '%'||#{keyword}||'%'
+				OR
+					ur_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				AND
+					br_title LIKE '%'||#{keyword}||'%'
+				OR
+					br_content LIKE '%'||#{keyword}||'%'
+				OR
+					ur_id LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+	</sql>
 	<insert id="create" parameterType="ReviewVo">
 	INSERT INTO 
 		REVIEW 
@@ -72,6 +108,38 @@
 	WHERE
 		br_no > 0	
 	]]>
+	</select>
+	
+	<select id="listSearch" resultType="ReviewVo">
+	<![CDATA[
+	SELECT 
+	B.RNUM, B.*
+	FROM(
+    	 SELECT 
+    	 ROWNUM AS RNUM, A.*
+    	 FROM(
+         	  SELECT *
+         	  FROM REVIEW
+         	  WHERE br_en='Y' AND br_no>0
+    ]]>
+    <include refid="search"></include>
+	<![CDATA[
+              ORDER BY br_no DESC, BR_DATE DESC)A
+         WHERE ROWNUM <=#{page}*#{perPageNum})B
+    WHERE B.RNUM >=#{page}*10-9
+	]]>	
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+	SELECT 
+		COUNT(br_no)
+	FROM
+		REVIEW
+	WHERE
+		br_no > 0	
+	]]>
+	<include refid="search"></include>
 	</select>
 
 </mapper>
