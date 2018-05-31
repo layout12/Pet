@@ -10,6 +10,7 @@ import com.spring.edu.dao.ReviewDao;
 import com.spring.edu.service.ReviewService;
 import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
+import com.spring.edu.vo.SearchCriteria;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -35,8 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void delete(int brNo) throws Exception {
 		dao.delete(brNo);
-	}
-	
+	}	
 	
 	@Override
 	public List<ReviewVo> listPaging(BoardCriteria cri) throws Exception {
@@ -47,6 +47,18 @@ public class ReviewServiceImpl implements ReviewService {
 	public int countPaging(BoardCriteria cri) throws Exception {
 		return dao.countPaging(cri);
 	}
+
+    @Override
+    public List<ReviewVo> listSearch(SearchCriteria cri) throws Exception {
+        return dao.listSearch(cri);
+    }
+
+    @Override
+    public int listSearchCount(SearchCriteria cri) throws Exception {
+        return dao.listSearchCount(cri);
+    }
+	
+	
 
 	
 	

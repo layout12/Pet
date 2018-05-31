@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.edu.dao.ReviewDao;
 import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
+import com.spring.edu.vo.SearchCriteria;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao {
@@ -46,6 +47,19 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int countPaging(BoardCriteria cri) throws Exception {
 		return session.selectOne(namespace+"countPaging",cri);
 	}
+
+    @Override
+    public List<ReviewVo> listSearch(SearchCriteria cri) throws Exception {
+        return session.selectList(namespace+"listSearch", cri);
+    }
+
+    @Override
+    public int listSearchCount(SearchCriteria cri) throws Exception {
+        return session.selectOne(namespace+"listSearchCount",cri);
+    }
+	
+    
+	
 	
 	
 	

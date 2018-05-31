@@ -15,36 +15,74 @@ import com.spring.edu.service.ReviewService;
 import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.BoardPaging;
 import com.spring.edu.vo.ReviewVo;
+import com.spring.edu.vo.SearchCriteria;
 
+/**
+  * @FileName : ReviewController.java
+  * @Project : hyun
+  * @Date : 2018. 5. 30. 
+  * @작성자 : 이엄지
+  * @프로그램 설명 :
+  */
 @Controller
 @RequestMapping("/review/*")
 public class ReviewController {
 	private static final Logger logger=LoggerFactory.getLogger(ReviewController.class);
 	
 	@Autowired
-	private ReviewService service;
+	private ReviewService service;	
 	
-	/*게시글 페이징 적용*/
+	/**
+	  * @Method Name : listAll
+	  * @작성일 : 2018. 5. 30.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 리스트
+	  * @param scri
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/listPaging", method=RequestMethod.GET)
-	public void listAll(@ModelAttribute("cri")BoardCriteria cri, Model model)throws Exception{
+	public String listAll(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
 		logger.info(cri.toString());
 		logger.info("리스트가 모두 보여짐..페이징도....");
-		model.addAttribute("listAll", service.listPaging(cri));
+		/*model.addAttribute("listAll", service.listPaging(cri));*/
+		model.addAttribute("listAll", service.listSearch(cri));
 		
 		BoardPaging paging=new BoardPaging();
 		paging.setCri(cri);
-		paging.setTotalCount(service.countPaging(cri));
+		paging.setTotalCount(service.listSearchCount(cri));
 		
 		model.addAttribute("paging", paging);
+		return "/review/listPaging";
 	}
 	
-	/*게시글  입력 폼*/
+	/**
+	  * @Method Name : registerForm
+	  * @작성일 : 2018. 5. 30.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 생성 폼
+	  * @param vo
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public void registerForm(ReviewVo vo, Model model)throws Exception{
-		logger.info("입력 폼...........");
+	public String registerForm(ReviewVo vo, Model model)throws Exception{
+	   	logger.info("입력 폼...........");
+		return "/review/register";
 	}
 	
-	/*게시글 입력 완료*/
+	/**
+	  * @Method Name : regist
+	  * @작성일 : 2018. 5. 30.
+	  * @작성자 : 이엄지
+	  * @Method 설명 :게시글 생성 완료
+	  * @param vo
+	  * @param rttr
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String regist(ReviewVo vo, RedirectAttributes rttr)throws Exception{
 		logger.info("입력");
@@ -55,39 +93,88 @@ public class ReviewController {
 		return "redirect:/review/listPaging";
 	}
 	
-	/*게시글 조회*/
+	/**
+	  * @Method Name : read
+	  * @작성일 : 2018. 5. 30.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 조회
+	  * @param brNo
+	  * @param cri
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/read", method=RequestMethod.GET)
-	public void read(@RequestParam("br_no")int brNo, @ModelAttribute("cri") BoardCriteria cri, Model model)throws Exception{
+	public String read(@RequestParam("br_no")int brNo, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
 		model.addAttribute("read",service.read(brNo));
+		return "/review/read";
 	}
 	
-	/*게시글 수정 폼*/
+	/**
+	  * @Method Name : updateForm
+	  * @작성일 : 2018. 5. 31.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 수정 폼
+	  * @param brNo
+	  * @param cri
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/update",method=RequestMethod.GET)
-	public void updateForm(int brNo, @ModelAttribute("cri") BoardCriteria cri, Model model)throws Exception {
-		model.addAttribute("update", service.read(brNo));
+	public String updateForm(int brNo, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
+		model.addAttribute("read", service.read(brNo));
+		return "redirect:/review/read";
 	}
-	
-	/*게시글 수정 완료*/
+
+	/**
+	  * @Method Name : update
+	  * @작성일 : 2018. 5. 31.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 수정 완료
+	  * @param vo
+	  * @param cri
+	  * @param rttr
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/read", method=RequestMethod.POST)
-	public String update(ReviewVo vo, BoardCriteria cri, RedirectAttributes rttr)throws Exception{
+	public String update(ReviewVo vo, SearchCriteria cri, RedirectAttributes rttr)throws Exception{
 		logger.info("수정");
 		
 		service.update(vo);
 		
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+	    rttr.addAttribute("searchType", cri.getSearchType());
+	    rttr.addAttribute("keyword", cri.getKeyword());
+	    
 		rttr.addFlashAttribute("msg","success");
+		logger.info(rttr.toString());
 		return "redirect:/review/listPaging";
 	}
 	
-	/*게시글 삭제(완전 삭제가 아닌 삭제여부를(brEn) 'N'으로 변경*/
+	/**
+	  * @Method Name : delete
+	  * @작성일 : 2018. 5. 31.
+	  * @작성자 : 이엄지
+	  * @Method 설명 : 게시글 삭제(완전 삭제가 아닌 삭제여부를(brEn) 'N'으로 변경
+	  * @param brNo
+	  * @param cri
+	  * @param rttr
+	  * @return
+	  * @throws Exception
+	  */
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete(int brNo, @ModelAttribute("cri") BoardCriteria cri, RedirectAttributes rttr)throws Exception{
+	public String delete(int brNo, @ModelAttribute("cri") SearchCriteria cri, RedirectAttributes rttr)throws Exception{
 		logger.info("삭제?");
 		service.delete(brNo);
 		
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		rttr.addFlashAttribute("msg","success");
 		return "redirect:/review/listPaging";
 	}
