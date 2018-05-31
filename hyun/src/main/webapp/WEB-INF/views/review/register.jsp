@@ -43,7 +43,7 @@
 							</div>
 						</div>	
 						<button type="submit" class="btn btn-primary">등록</button>
-						<button type="reset" class="btn btn-default ly12-btnR ly12-cancel" onclick="location.href='review/listPaging'">취소</button>				
+						<button type="reset" class="btn btn-default ly12-btnR ly12-cancel" onclick="location.href='listPaging'">취소</button>				
 					</div>						
 				</form>
 			</div>			

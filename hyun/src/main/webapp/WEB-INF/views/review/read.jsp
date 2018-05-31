@@ -11,26 +11,37 @@
 	#ly12-updateForm{display:none;}
 </style>
 <script type="text/javascript">
-	function updateForm(){
-		$("#ly12-readForm").hide();
-		$("#ly12-updateForm").show();
-	}
-	
-	function readForm(){
-		$("#ly12-readForm").show();
-		$("#ly12-updateForm").hide();
-	}
-	$(document).ready(function(){
-		/*상세페이지에서 바로 전 목록페이지로 넘어갈 때 정보유지한채 넘김 */
-		var formObj=$("form[role='form']");
-		console.log(formObj);
+	$(function(){		
 		
-		$(".ly12-goList").on("click",function(){
-			formObj.attr("method","get");
-			formObj.attr("action","/review/listPaging");
-			formObj.submit();
+		/*상세페이지에서 바로 전 목록페이지로 넘어갈 때 정보유지한채 넘김 */
+			var formObj = $("form[role='form']");
+			console.log(formObj);
+	
+			/*목록 버튼 클릭 시 */
+			$(".ly12-goList").on("click", function() {
+				formObj.attr("method", "get");
+				formObj.attr("action", "/review/listPaging");
+				formObj.submit();
+			});
+			
+			/*수정 버튼 클릭 시 */
+			$(".ly12-upd").on("click",function(){
+				$("#ly12-readForm").hide();
+				$("#ly12-updateForm").show();
+			});
+			
+			/*수정 완료 버튼 클릭 시*/
+			$(".ly12-updFinish").on("click",function(){
+				formObj.submit();
+			});
+			
+			/*수정 취소 버튼 클릭 시*/
+			$(".ly12-cancel").on("click",function(){
+				$("#ly12-readForm").show();
+				$("#ly12-updateForm").hide();
+			});		
+	
 		});
-	});
 </script>
 </head>
 <body>
@@ -47,10 +58,13 @@
 			<div class="row ly12-mgB65">
 				<!-- 게시판 상세글 영역-->
 				<div id="ly12-readForm">
-					<form role="form" method="post" action="/review/delete">				
+					<form role="form" method="post" action="/review/delete">									
 						<input type="hidden" name="page" value="${cri.page }">
 						<input type="hidden" name="perPageNum" value="${cri.perPageNum }">	
-						<input type="hidden" name="brNo" value="${read.brNo }">				
+						<input type="hidden" name="brNo" value="${read.brNo }">	
+						<input type="hidden" name="searchType" value="${cri.searchType }">
+						<input type="hidden" name="keyword" value="${cri.keyword }">
+											
 						<div class="col-md-12">					
 							<div class="form-horizontal">
 								<div class="form-group">
@@ -84,7 +98,7 @@
 		    						</div>						
 								</div>
 							</div>	
-							<button type="button" class="btn btn-warning" onclick="updateForm();">수정</button>
+							<button type="button" class="btn btn-warning ly12-upd">수정</button>
 							<button type="submit" class="btn btn-danger">삭제</button>
 							<button type="submit" class="btn btn-primary ly12-btnR ly12-goList">목록</button>				
 						</div>						
@@ -97,6 +111,9 @@
 						<input type="hidden" name="page" value="${cri.page }">
 						<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
 						<input type="hidden" name="brNo" value="${read.brNo }">
+						<input type="hidden" name="searchType" value="${cri.searchType }">
+						<input type="hidden" name="keyword" value="${cri.keyword }">
+						
 						<div class="col-md-12">					
 							<div class="form-horizontal">
 								<div class="form-group">
@@ -130,8 +147,8 @@
 		    						</div>						
 								</div>
 							</div>	
-							<button type="submit" class="btn btn-primary">수정완료</button>
-							<button type="button" class="btn btn-warning" onclick="readForm();">취소</button>
+							<button type="submit" class="btn btn-primary ly12-updFinish">수정완료</button>
+							<button type="button" class="btn btn-warning ly12-cancel">취소</button>
 						</div>						
 					</form>
 				</div>
