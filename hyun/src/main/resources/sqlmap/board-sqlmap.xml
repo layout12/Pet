@@ -7,35 +7,35 @@
 		<if test="searchType !=null">
 			<if test="searchType == 't'.toString()">
 				AND 
-					br_title LIKE '%'||#{keyword}||'%'
+					INSTR(br_title,#{keyword})>0
 			</if>
 			<if test="searchType == 'c'.toString()">
 				AND 
-					br_title LIKE '%'||#{keyword}||'%'
+					INSTR(br_content,#{keyword})>0
 			</if>
 			<if test="searchType == 'w'.toString()">
 				AND 
-					ur_id LIKE '%'||#{keyword}||'%'
+					INSTR(ur_id,#{keyword})>0
 			</if>
 			<if test="searchType == 'tc'.toString()">
 				AND
-					br_title LIKE '%'||#{keyword}||'%'
+					INSTR(br_title,#{keyword})>0
 				OR
-					br_content LIKE '%'||#{keyword}||'%'
+					INSTR(br_content,#{keyword})>0
 			</if>
 			<if test="searchType == 'cw'.toString()">
 				AND
-					br_content LIKE '%'||#{keyword}||'%'
+					INSTR(br_content,#{keyword})>0
 				OR
-					ur_id LIKE '%'||#{keyword}||'%'
+					INSTR(ur_id,#{keyword})>0
 			</if>
 			<if test="searchType == 'tcw'.toString()">
 				AND
-					br_title LIKE '%'||#{keyword}||'%'
+					INSTR(br_title,#{keyword})>0
 				OR
-					br_content LIKE '%'||#{keyword}||'%'
+					INSTR(br_content,#{keyword})>0
 				OR
-					ur_id LIKE '%'||#{keyword}||'%'
+					INSTR(ur_id,#{keyword})>0
 			</if>
 		</if>
 	</sql>
@@ -106,7 +106,7 @@
 	FROM
 		REVIEW
 	WHERE
-		br_no > 0	
+		br_no > 0 AND br_en='Y'	
 	]]>
 	</select>
 	
@@ -137,7 +137,7 @@
 	FROM
 		REVIEW
 	WHERE
-		br_no > 0	
+		br_no > 0 AND br_en='Y'	
 	]]>
 	<include refid="search"></include>
 	</select>
