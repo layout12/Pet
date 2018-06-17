@@ -22,7 +22,7 @@
 							<a href="/users/usersInsert">
 								regist
 							</a>
-							<a href="/admin/product">
+							<a href="/admin/main">
 								admin
 							</a>
 						</li>
@@ -200,7 +200,8 @@
 		        	<!-- <li class="active"><a href="/">HOME</a></li> -->
 		        	<li><a href="#">INTRODUCE</a></li>
 					<li><a href="/product/shop">SHOP</a></li>
-					<li><a href="#">REVIEW</a></li>
+					<li><a href="/review/listPaging">REVIEW</a></li>
+					<li><a href="/answer/answer">Answer(임시)</a></li>
 					<li><a href="#">QnA</a></li>
 					<li><a href="#">SKILL</a></li>
 					<!-- End of /.dropdown -->
