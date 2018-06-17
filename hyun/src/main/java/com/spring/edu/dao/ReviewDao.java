@@ -1,7 +1,6 @@
 package com.spring.edu.dao;
 
 import java.util.List;
-
 import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
 import com.spring.edu.vo.SearchCriteria;
@@ -31,5 +30,8 @@ public interface ReviewDao {
 	
 	/*게시글 검색 후 리스트 갯수*/
 	public int listSearchCount(SearchCriteria cri)throws Exception;
+	
+	/*게시글 조회수 증가*/
+    public void viewCnt(int brNo)throws Exception;
 }
 	

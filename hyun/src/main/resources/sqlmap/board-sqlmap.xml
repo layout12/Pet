@@ -41,16 +41,17 @@
 	</sql>
 	<insert id="create" parameterType="ReviewVo">
 	INSERT INTO 
-		REVIEW 
+		REVIEW 	
 	VALUES
 		(REVIEWSEQ.NEXTVAL
 		,#{urId}
 		,#{brTitle}
 		,#{brContent}
 		,SYSDATE
-		,1
+		,0
 		,2
-		,'Y')
+		,'Y'
+		)
 	</insert>
 	
 	<select id="read" resultType="ReviewVo">
@@ -61,6 +62,15 @@
 	WHERE 
 		br_no=#{brNo}	
 	</select>
+	
+	<update id="viewCnt" parameterType="int">
+	UPDATE 
+		REVIEW
+	SET
+		br_hits=NVL(br_hits,0)+1
+	WHERE
+		br_no=#{brNo}
+	</update>
 	
 	<update id="update" parameterType="ReviewVo">
 	UPDATE 
@@ -95,7 +105,7 @@
          	  WHERE br_en='Y'
               ORDER BY br_no DESC, BR_DATE DESC)A
          WHERE ROWNUM <=#{page}*#{perPageNum})B
-    WHERE B.RNUM >=#{page}*10-9
+    WHERE B.RNUM >=#{pageStart}
 	]]>
 	</select>
 	
@@ -126,7 +136,7 @@
 	<![CDATA[
               ORDER BY br_no DESC, BR_DATE DESC)A
          WHERE ROWNUM <=#{page}*#{perPageNum})B
-    WHERE B.RNUM >=#{page}*10-9
+    WHERE B.RNUM >=#{pageStart}
 	]]>	
 	</select>
 	
@@ -141,5 +151,7 @@
 	]]>
 	<include refid="search"></include>
 	</select>
+	
+
 
 </mapper>

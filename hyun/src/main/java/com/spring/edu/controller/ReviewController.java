@@ -1,5 +1,7 @@
 package com.spring.edu.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.edu.service.ReviewService;
-import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.BoardPaging;
 import com.spring.edu.vo.ReviewVo;
 import com.spring.edu.vo.SearchCriteria;
@@ -46,7 +48,6 @@ public class ReviewController {
 	public String listAll(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
 		logger.info(cri.toString());
 		logger.info("리스트가 모두 보여짐..페이징도....");
-		/*model.addAttribute("listAll", service.listPaging(cri));*/
 		model.addAttribute("listAll", service.listSearch(cri));
 		
 		BoardPaging paging=new BoardPaging();
@@ -105,9 +106,12 @@ public class ReviewController {
 	  * @throws Exception
 	  */
 	@RequestMapping(value="/read", method=RequestMethod.GET)
-	public String read(@RequestParam("br_no")int brNo, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
-		model.addAttribute("read",service.read(brNo));
-		return "/review/read";
+	public ModelAndView read(@RequestParam("br_no")int brNo, @ModelAttribute("cri") SearchCriteria cri, HttpSession session)throws Exception{
+	    service.viewCnt(brNo, session);
+	    ModelAndView mv=new ModelAndView();
+	    mv.setViewName("/review/read");
+	    mv.addObject("read", service.read(brNo));
+	    return mv;
 	}
 	
 	/**
@@ -144,11 +148,13 @@ public class ReviewController {
 		
 		service.update(vo);
 		
+		//URL 뒤에 붙여서 보냄(GET방식으로 받는 것과 동일)
 		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("perPageNum",cri.getPerPageNum());
 	    rttr.addAttribute("searchType", cri.getSearchType());
 	    rttr.addAttribute("keyword", cri.getKeyword());
 	    
+	    //addFlashAttribute는 세션에 잠시 담았다가 redirect 후 소멸
 		rttr.addFlashAttribute("msg","success");
 		logger.info(rttr.toString());
 		return "redirect:/review/listPaging";
