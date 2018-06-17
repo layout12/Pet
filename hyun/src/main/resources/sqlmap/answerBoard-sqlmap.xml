@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="answer">
+	<select id="list" resultType="AnswerBoardVo">
+		SELECT 
+			* 
+		FROM
+			ANSWER_BOARD
+		WHERE 
+			BR_NO=#{brNo}
+		ORDER BY AS_NO DESC
+	</select>
+	
+	<select id="listPaging" resultType="AnswerBoardVo">
+		<![CDATA[
+		SELECT
+		B.RNUM, B.*
+		FROM(
+			SELECT
+			ROWNUM AS RNUM, A.*
+			FROM(		
+				SELECT *
+				FROM ANSWER_BOARD
+				WHERE br_no=#{brNo} AND as_en='Y'
+				ORDER BY as_no DESC, as_date DESC, as_update DESC)A
+			WHERE ROWNUM <=#{cri.page}*#{cri.perPageNum})B
+		WHERE B.RNUM >=#{cri.pageStart}
+		]]>		
+	</select>
+	
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT 
+			COUNT(br_No)
+		FROM
+			ANSWER_BOARD
+		WHERE
+			br_no=#{brNo} and as_en='Y'
+		]]>	
+	</select>
+	
+	<insert id="create" parameterType="AnswerBoardVo">
+		INSERT INTO
+			ANSWER_BOARD
+		VALUES
+			(ANSWER_BOARDSEQ.NEXTVAL
+			,#{brNo}
+			,#{asPrno}
+			,#{urId}
+			,#{asContent}
+			,SYSDATE
+			,SYSDATE
+			,'Y'
+			)
+	</insert>
+	
+	<update id="update" parameterType="AnswerBoardVo">
+		UPDATE
+			ANSWER_BOARD
+		SET
+			as_content=#{asContent}
+			,as_update=SYSDATE
+		WHERE
+			AS_NO=#{asNo}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE
+			ANSWER_BOARD
+		SET
+			AS_EN='N'
+		WHERE
+			AS_NO=#{asNo}
+	</update>
+</mapper>
