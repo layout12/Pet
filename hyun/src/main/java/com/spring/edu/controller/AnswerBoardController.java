@@ -47,6 +47,15 @@ public class AnswerBoardController {
         return entity;
     }
     
+    /**
+      * @Method Name : registerRe
+      * @작성일 : 2018. 7. 6.
+      * @작성자 : 이엄지
+      * @Method 설명 : 댓글의 댓글추가 입력
+      * @param asNo
+      * @param vo
+      * @return
+      */
     @RequestMapping(value="/{asNo}",method= RequestMethod.POST)
     public ResponseEntity<String> registerRe(@PathVariable("asNo") int asNo, @RequestBody AnswerBoardVo vo){
         
@@ -59,8 +68,7 @@ public class AnswerBoardController {
             entity=new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
         return entity;
-    }
-    
+    }    
  
     /**
       * @Method Name : listPaging
@@ -103,28 +111,6 @@ public class AnswerBoardController {
         }
         
         return entity;
-    }
-    
-    /**
-      * @Method Name : list
-      * @작성일 : 2018. 6. 4.
-      * @작성자 : 이엄지
-      * @Method 설명 :댓글 리스트(uri내의 경로 brNo 활용)
-      * @param brNo
-      * @return
-      */
-    @RequestMapping(value="/list/{brNo}",method=RequestMethod.GET)
-    public ResponseEntity<List<AnswerBoardVo>> list(@PathVariable("brNo") int brNo){
-        
-       ResponseEntity<List<AnswerBoardVo>> entity=null;
-       try {
-           entity=new ResponseEntity<>(
-           service.list(brNo),HttpStatus.OK);
-       } catch (Exception e) {
-            e.printStackTrace();
-            entity=new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-       }
-       return entity;
     }
 
     /**

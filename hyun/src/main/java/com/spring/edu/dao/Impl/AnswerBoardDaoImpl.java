@@ -28,13 +28,7 @@ public class AnswerBoardDaoImpl implements AnswerBoardDao {
         
         return session.selectList(namespace+"listPaging",map);
     }    
-    
-
-    @Override
-    public List<AnswerBoardVo> list(int brNo) throws Exception {
-        return session.selectList(namespace+"list", brNo);
-    }
-
+  
 
     @Override
     public void create(AnswerBoardVo vo) throws Exception {

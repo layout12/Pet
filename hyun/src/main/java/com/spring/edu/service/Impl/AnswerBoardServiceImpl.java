@@ -25,12 +25,7 @@ public class AnswerBoardServiceImpl implements AnswerBoardService{
     public int count(int brNo) throws Exception {
         return dao.count(brNo);
     }
-    
-    @Override
-    public List<AnswerBoardVo> list(int brNo) throws Exception {
-        return dao.list(brNo);
-    }
-
+ 
     @Override
     public void create(AnswerBoardVo vo) throws Exception {
         dao.create(vo);

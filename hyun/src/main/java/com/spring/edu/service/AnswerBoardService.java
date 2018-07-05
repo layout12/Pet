@@ -8,10 +8,8 @@ import com.spring.edu.vo.BoardCriteria;
 public interface AnswerBoardService {
 
     /*페이지 번호에 의한 댓글 리스트*/
-    public List<AnswerBoardVo> listPaging(int brNo, BoardCriteria cri) throws Exception;
+    public List<AnswerBoardVo> listPaging(int brNo, BoardCriteria cri) throws Exception;    
     
-    public List<AnswerBoardVo> list(int brNo) throws Exception;
-        
     /*댓글 생성*/
     public void create(AnswerBoardVo vo) throws Exception;
     
