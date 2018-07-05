@@ -30,4 +30,10 @@ public class AnswerBoardVo {
     
     /*댓글 삭제여부*/
     private char asEn;
+    
+    /*댓글레벨(새로추가)*/
+    private int lv;
+    
+    /*부모댓글 아이디(새로추가)*/
+    private String asPrnoId;
 }

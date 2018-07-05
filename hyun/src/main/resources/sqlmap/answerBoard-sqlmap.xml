@@ -13,7 +13,7 @@
 		ORDER BY AS_NO DESC
 	</select>
 	
-	<select id="listPaging" resultType="AnswerBoardVo">
+	<!-- <select id="listPaging" resultType="AnswerBoardVo">
 		<![CDATA[
 		SELECT
 		B.RNUM, B.*
@@ -25,6 +25,30 @@
 				FROM ANSWER_BOARD
 				WHERE br_no=#{brNo} AND as_en='Y'
 				ORDER BY as_no DESC, as_date DESC, as_update DESC)A
+			WHERE ROWNUM <=#{cri.page}*#{cri.perPageNum})B
+		WHERE B.RNUM >=#{cri.pageStart}
+		]]>		
+	</select> -->
+	
+	<select id="listPaging" resultType="AnswerBoardVo">
+		<![CDATA[
+		SELECT
+		B.RNUM, B.*
+		FROM(
+			SELECT
+			ROWNUM AS RNUM, A.*
+			FROM(		
+				SELECT 
+				LEVEL AS lv, C.*
+				,(
+					SELECT ur_id
+					FROM ANSWER_BOARD D
+					WHERE D.as_no = C.as_prno
+				)AS ASPRNO_ID
+				FROM ANSWER_BOARD C
+				WHERE br_no=#{brNo} AND as_en='Y'
+				CONNECT BY PRIOR as_no=as_prno
+				ORDER SIBLINGS BY as_no DESC, as_date DESC, as_update DESC)A
 			WHERE ROWNUM <=#{cri.page}*#{cri.perPageNum})B
 		WHERE B.RNUM >=#{cri.pageStart}
 		]]>		
@@ -46,8 +70,8 @@
 			ANSWER_BOARD
 		VALUES
 			(ANSWER_BOARDSEQ.NEXTVAL
-			,#{brNo}
-			,#{asPrno}
+			,#{brNo}	
+			,NULL
 			,#{urId}
 			,#{asContent}
 			,SYSDATE
@@ -56,6 +80,21 @@
 			)
 	</insert>
 	
+	<insert id="createRe" parameterType="AnswerBoardVo">
+		INSERT INTO
+			ANSWER_BOARD
+		VALUES
+			(ANSWER_BOARDSEQ.NEXTVAL
+			,#{brNo}	
+			,#{asPrno}	
+			,#{urId}
+			,#{asContent}
+			,SYSDATE
+			,SYSDATE
+			,'Y'
+			)
+	</insert>	
+
 	<update id="update" parameterType="AnswerBoardVo">
 		UPDATE
 			ANSWER_BOARD

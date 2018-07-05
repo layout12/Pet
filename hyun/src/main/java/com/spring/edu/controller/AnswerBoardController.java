@@ -39,7 +39,7 @@ public class AnswerBoardController {
         ResponseEntity<String> entity=null;
         try {
             service.create(vo);
-            entity=new ResponseEntity<String>("success",HttpStatus.OK);
+            entity=new ResponseEntity<String>("regSuccess",HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             entity=new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
@@ -47,6 +47,21 @@ public class AnswerBoardController {
         return entity;
     }
     
+    @RequestMapping(value="/{asNo}",method= RequestMethod.POST)
+    public ResponseEntity<String> registerRe(@PathVariable("asNo") int asNo, @RequestBody AnswerBoardVo vo){
+        
+        ResponseEntity<String> entity=null;
+        try {           
+            service.createRe(vo);
+            entity=new ResponseEntity<String>("regSuccess2",HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity=new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+    
+ 
     /**
       * @Method Name : listPaging
       * @작성일 : 2018. 6. 11.
@@ -64,24 +79,22 @@ public class AnswerBoardController {
         
         try {
            
-            /*BoardCriteria : 현재 조회하는 페이지와 한페이지에 나오는 게시물 수를 정의한 모델객체*/
+            //BoardCriteria : 현재 조회하는 페이지와 한페이지에 나오는 게시물 수를 정의한 모델객체
             BoardCriteria cri = new BoardCriteria(); 
             cri.setPage(page);
             
-            /*BoardPaging : 전체 게시물 토대로 계산된 페이징 범위를 계산한 모델객체*/
+            List<AnswerBoardVo> list = service.listPaging(brNo, cri);
+            int answerCount=service.count(brNo);
+            
+            //BoardPaging : 전체 게시물 토대로 계산된 페이징 범위를 계산한 모델객체
             BoardPaging paging=new BoardPaging();
             paging.setCri(cri);
-            
-            Map<String,Object> map=new HashMap<>();
-            List<AnswerBoardVo> list = service.listPaging(brNo, cri);
-            
-            map.put("list", list);
-            
-            int answerCount=service.count(brNo);
             paging.setTotalCount(answerCount);
             
-            map.put("paging", paging);
-            
+            Map<String,Object> map=new HashMap<>();            
+            map.put("list", list);
+            map.put("paging", paging);            
+                  
             entity=new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
             
         } catch (Exception e) {
@@ -131,7 +144,7 @@ public class AnswerBoardController {
             vo.setAsNo(asNo);
             service.update(vo); 
             
-            entity=new ResponseEntity<String>("success",HttpStatus.OK);
+            entity=new ResponseEntity<String>("modSuccess",HttpStatus.OK);
         }catch (Exception e) {
             e.printStackTrace();
             entity=new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
@@ -153,7 +166,7 @@ public class AnswerBoardController {
         ResponseEntity<String> entity=null;
         try {
             service.delete(asNo);
-            entity=new ResponseEntity<String>("삭제성공",HttpStatus.OK);
+            entity=new ResponseEntity<String>("delSuccess",HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             entity=new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);

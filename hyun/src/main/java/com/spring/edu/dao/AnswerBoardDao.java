@@ -15,6 +15,9 @@ public interface AnswerBoardDao {
     /*댓글 생성*/
     public void create(AnswerBoardVo vo) throws Exception;
     
+    /*댓글추가 생성*/
+    public void createRe(AnswerBoardVo vo) throws Exception;
+    
     /*댓글 수정*/
     public void update(AnswerBoardVo vo) throws Exception;
     

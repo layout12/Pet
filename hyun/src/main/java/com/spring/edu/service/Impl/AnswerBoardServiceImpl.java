@@ -21,7 +21,6 @@ public class AnswerBoardServiceImpl implements AnswerBoardService{
         return dao.listPaging(brNo,cri);
     }
 
-
     @Override
     public int count(int brNo) throws Exception {
         return dao.count(brNo);
@@ -32,10 +31,14 @@ public class AnswerBoardServiceImpl implements AnswerBoardService{
         return dao.list(brNo);
     }
 
-
     @Override
     public void create(AnswerBoardVo vo) throws Exception {
         dao.create(vo);
+    }     
+
+    @Override
+    public void createRe(AnswerBoardVo vo) throws Exception {
+        dao.createRe(vo);
     }
 
     @Override
