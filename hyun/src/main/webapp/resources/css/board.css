@@ -1,8 +1,22 @@
 @charset "EUC-KR";
 
 /*부트스트랩용 css외에 다른 css 스타일은 만든이 구분자를 앞에 넣어줌. 여기선 ly12*/
+textarea{resize:none;}
+
+/*padding,margin 공통*/
+.ly12-mgR5{margin-right:5px;}
+.ly12-mgB65{margin-bottom:65px;}
+.ly12-addBtn{margin:10px 10px;}
+.ly12-mgB10{margin-bottom:10px;}
 
 /*----------board Common Css-----------*/
-.ly12-mgB65{margin-bottom:65px;}
 .ly12-btnR{float:right;}
 .ly12-th>tr>th,.ly12-tblTextC{text-align: center;}
+.ly12-pdL5{padding-left:0px;}
+
+
+/*----------answer Common Css-----------*/
+.ly12-answerAsCon{padding:8px 10px 10px 0;}
+.ly12-answerLi{padding:10px 10px; border-bottom:1px solid #f0f0f0;}
+.ly12-answerUrId{font-weight:bold; color:#90c322; font-size:small;}
+.ly12-answerRe{padding:10px 30px;background-color:#fbfbfb;}
