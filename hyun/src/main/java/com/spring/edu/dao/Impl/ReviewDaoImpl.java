@@ -57,13 +57,12 @@ public class ReviewDaoImpl implements ReviewDao {
     public int listSearchCount(SearchCriteria cri) throws Exception {
         return session.selectOne(namespace+"listSearchCount",cri);
     }
-	
-    
-	
-	
-	
-	
-	
 
+    @Override
+    public void viewCnt(int brNo) throws Exception {
+        session.update(namespace+"viewCnt",brNo);
+    }
+    
+    
 	
 }
