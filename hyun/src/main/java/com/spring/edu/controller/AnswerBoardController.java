@@ -56,8 +56,8 @@ public class AnswerBoardController {
       * @param vo
       * @return
       */
-    @RequestMapping(value="/{asNo}",method= RequestMethod.POST)
-    public ResponseEntity<String> registerRe(@PathVariable("asNo") int asNo, @RequestBody AnswerBoardVo vo){
+    @RequestMapping(value="/{brNo}/{asNo}",method= RequestMethod.POST)
+    public ResponseEntity<String> registerRe(@PathVariable("brNo") int brNo, @PathVariable("asNo") int asNo, @RequestBody AnswerBoardVo vo){
         
         ResponseEntity<String> entity=null;
         try {           
