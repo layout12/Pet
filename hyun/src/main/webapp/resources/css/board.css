@@ -13,6 +13,7 @@ textarea{resize:none;}
 .ly12-btnR{float:right;}
 .ly12-th>tr>th,.ly12-tblTextC{text-align: center;}
 .ly12-pdL5{padding-left:0px;}
+.ly12-editor{width:100%; min-width:100%; height:30em; display:none;}
 
 
 /*----------answer Common Css-----------*/
