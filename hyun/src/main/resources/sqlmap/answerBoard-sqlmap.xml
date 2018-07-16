@@ -2,34 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="answer">
-	<select id="list" resultType="AnswerBoardVo">
-		SELECT 
-			* 
-		FROM
-			ANSWER_BOARD
-		WHERE 
-			BR_NO=#{brNo}
-		ORDER BY AS_NO DESC
-	</select>
-	
-	<!-- <select id="listPaging" resultType="AnswerBoardVo">
-		<![CDATA[
-		SELECT
-		B.RNUM, B.*
-		FROM(
-			SELECT
-			ROWNUM AS RNUM, A.*
-			FROM(		
-				SELECT *
-				FROM ANSWER_BOARD
-				WHERE br_no=#{brNo} AND as_en='Y'
-				ORDER BY as_no DESC, as_date DESC, as_update DESC)A
-			WHERE ROWNUM <=#{cri.page}*#{cri.perPageNum})B
-		WHERE B.RNUM >=#{cri.pageStart}
-		]]>		
-	</select> -->
-	
+<mapper namespace="answer">	
 	<select id="listPaging" resultType="AnswerBoardVo">
 		<![CDATA[
 		SELECT
@@ -47,6 +20,7 @@
 				)AS ASPRNO_ID
 				FROM ANSWER_BOARD C
 				WHERE br_no=#{brNo} AND as_en='Y'
+				START WITH as_prno IS NULL
 				CONNECT BY PRIOR as_no=as_prno
 				ORDER SIBLINGS BY as_no DESC, as_date DESC, as_update DESC)A
 			WHERE ROWNUM <=#{cri.page}*#{cri.perPageNum})B
