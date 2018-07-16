@@ -1,5 +1,7 @@
 $(document).ready(function (){ 	
-
+	
+	///////////////////////////////////////댓글입력////////////////////////////////////////////
+	
 	// 댓글 등록일자 : 날짜/시간 2자리로 맞추기
 	Handlebars.registerHelper("helperAsDate", function (timeValue) {
         var dateObj = new Date(timeValue);
@@ -23,6 +25,98 @@ $(document).ready(function (){
 		text = text.replace(/( )/gm, "&nbsp;");
 		return new Handlebars.SafeString(text);
 	});	
+	
+	//댓글 저장 버튼 클릭 시
+	$("#ly12-addBtn").on("click",function(){
+		
+		//입력 form 선택자
+		var urIdObj = $(".newUrId");
+		var asConObj = $(".newAsContent");
+		var urId=urIdObj.val();
+		var asContent=asConObj.val();
+		
+		//댓글 입력처리 수행
+		$.ajax({
+			type : "post",
+			url : "/answer/",
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : "text",
+			data : JSON.stringify({
+				brNo : brNo,
+				urId : urId,
+				asContent : asContent
+			}),
+			success : function(result){
+				console.log("result : " +result);
+				if(result == "regSuccess") {
+					alert("댓글이 등록되었습니다.");
+					page = 1;
+					getPageList("/answer/list/" +brNo + "/" + page);
+					urIdObj.val("");
+					asConObj.val("");
+				}
+			}
+		});
+	});
+	
+	//댓글 "추가" 버튼 클릭 시 해당 번호와 글을 가진 모달 창 뜨게 함
+	$(".answerUl").on("click", ".ly12-answerLi .addBtn", function(){			
+		var answer = $(this).parent();
+		
+		var asPrno = answer.attr("data-asNo")
+	
+		$(".modTitle").val(asPrno);		
+		
+		console.log("이 창의 부모번호는"+asPrno);
+	});
+	
+	
+	//댓글추가 창에서 "저장" 클릭 시
+	$(".ly12-addBtn-new").on("click", function(){
+		var asPrnoObj=$(".modTitle");
+		var asPrno =asPrnoObj.val();
+		var urId = $(".newUrId2").val();
+		var asContent = $(".newAsContent2").val();
+		
+		$.ajax({
+			type :"post",
+			url : "/answer/"+ brNo + asPrno,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType : "text",
+			data : JSON.stringify({
+				brNo : brNo,
+				asPrno : asPrno,
+				urId : urId,				
+				asContent : asContent
+			}),
+			success : function(result){
+				console.log("result :" +result);				
+				if(result == "regSuccess2"){
+					alert("댓글이 입력되었습니다.");					
+					getPageList("/answer/list/" +brNo + "/" + page);
+					$("#addModal").modal("hide");	
+					urId.val("");
+					asContent.val("");
+				}
+			},error:function(request,status,error){
+				/*console.log(JSON.stringify(data));*/
+				console.log("게시번호"+brNo);
+				console.log("부모번호"+asPrno);
+				console.log("작성자"+urId);
+				console.log("내용"+asContent);
+				alert("에러");
+			}
+			
+		})
+	});
+	
+	///////////////////////////////////////댓글조회////////////////////////////////////////////
 	
 	//댓글 원글과 자식글 구분처리
 	Handlebars.registerHelper("fn_asIf",function(option){			
@@ -105,43 +199,8 @@ $(document).ready(function (){
 		page=$(this).attr("href");
 		getPageList("/answer/list/" +brNo + "/" + page);
 	});	
-	
-	//댓글 저장 버튼 클릭 시
-	$("#ly12-addBtn").on("click",function(){
+	///////////////////////////////////////댓글 수정 및 삭제////////////////////////////////////////////
 		
-		//입력 form 선택자
-		var urIdObj = $(".newUrId");
-		var asConObj = $(".newAsContent");
-		var urId=urIdObj.val();
-		var asContent=asConObj.val();
-		
-		//댓글 입력처리 수행
-		$.ajax({
-			type : "post",
-			url : "/answer/",
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : "text",
-			data : JSON.stringify({
-				brNo : brNo,
-				urId : urId,
-				asContent : asContent
-			}),
-			success : function(result){
-				console.log("result : " +result);
-				if(result == "regSuccess") {
-					alert("댓글이 등록되었습니다.");
-					page = 1;
-					getPageList("/answer/list/" +brNo + "/" + page);
-					urIdObj.val("");
-					asConObj.val("");
-				}
-			}
-		});
-	});
-	
 	//댓글 "수정" 버튼 클릭 시 값 가져오기
 	$(".answerUl").on("click", ".ly12-answerLi", function(event){
 		var answer = $(this);
@@ -176,59 +235,6 @@ $(document).ready(function (){
 		})
 	});	
 	
-	//댓글 "추가" 버튼 클릭 시 해당 번호와 글을 가진 모달 창 뜨게 함
-	$(".answerUl").on("click", ".ly12-answerLi .addBtn", function(){			
-		var answer = $(this).parent();
-		
-		/*var asNo = answer.attr("data-asNo");*/
-		var asPrno = answer.attr("data-asNo")
-	
-		/*$(".newAsContent2").val(answer.find(".ly12-answerAsCon").text());*/
-		$(".tt").val(asPrno);		
-		
-		console.log("이 창의 부모번호는"+asPrno);
-	});
-	
-	
-	//댓글추가 창에서 "저장" 클릭 시
-	$(".ly12-addBtn").on("click", function(){
-		var asPrnoObj=$(".tt");
-		var asPrno =asPrnoObj.val();
-		var urId = $(".newUrId2").val();
-		var asContent = $(".newAsContent2").val();
-		
-		$.ajax({
-			type :"post",
-			url : "/answer/"+ asPrno,
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			dataType : "text",
-			data : JSON.stringify({
-				brNo : brNo,
-				asPrno : asPrno,
-				urId : urId,				
-				asContent : asContent
-			}),
-			success : function(result){
-				console.log("result :" +result);				
-				if(result == "regSuccess2"){
-					alert("댓글이 입력되었습니다.");					
-					getPageList("/answer/list/" +brNo + "/" + page);
-					$("#addModal").modal("hide");					
-				}
-			},error:function(request,status,error){
-				console.log(JSON.stringify(data));
-				/*console.log("게시번호"+brNo);
-				console.log("부모번호"+asPrno);
-				console.log("작성자"+urId);
-				console.log("내용"+asContent);*/
-				alert("에러");
-			}
-			
-		})
-	});
 	
 	//댓글에서 "삭제" 클릭 시
 	$("#answerDelBtn").on("click",function(){
@@ -251,6 +257,6 @@ $(document).ready(function (){
 			}
 		})
 	});
-	//--------------------------------------------------------------------------------------
+
 		
 });
