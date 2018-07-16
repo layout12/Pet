@@ -4,7 +4,7 @@
 
 <mapper namespace="review">
 	<sql id="search">
-		<if test="searchType !=null">
+		<if test="searchType!=null">
 			<if test="searchType == 't'.toString()">
 				AND 
 					INSTR(br_title,#{keyword})>0
@@ -49,7 +49,7 @@
 		,#{brContent}
 		,SYSDATE
 		,0
-		,2
+		,null
 		,'Y'
 		)
 	</insert>
@@ -92,34 +92,6 @@
 		br_no=#{brNo}
 	</update>
 	
-	<select id="listPaging" resultType="ReviewVo">
-	<![CDATA[
-	SELECT 
-	B.RNUM, B.*
-	FROM(
-    	 SELECT 
-    	 ROWNUM AS RNUM, A.*
-    	 FROM(
-         	  SELECT *
-         	  FROM REVIEW
-         	  WHERE br_en='Y'
-              ORDER BY br_no DESC, BR_DATE DESC)A
-         WHERE ROWNUM <=#{page}*#{perPageNum})B
-    WHERE B.RNUM >=#{pageStart}
-	]]>
-	</select>
-	
-	<select id="countPaging" resultType="int">
-	<![CDATA[
-	SELECT 
-		COUNT(br_no)
-	FROM
-		REVIEW
-	WHERE
-		br_no > 0 AND br_en='Y'	
-	]]>
-	</select>
-	
 	<select id="listSearch" resultType="ReviewVo">
 	<![CDATA[
 	SELECT 
@@ -129,12 +101,12 @@
     	 ROWNUM AS RNUM, A.*
     	 FROM(
          	  SELECT *
-         	  FROM REVIEW
-         	  WHERE br_en='Y' AND br_no>0
+         	  FROM REVIEW  
+         	  WHERE br_en='Y'       	 
     ]]>
     <include refid="search"></include>
 	<![CDATA[
-              ORDER BY br_no DESC, BR_DATE DESC)A
+              ORDER BY br_no DESC, br_date DESC)A
          WHERE ROWNUM <=#{page}*#{perPageNum})B
     WHERE B.RNUM >=#{pageStart}
 	]]>	
@@ -146,8 +118,8 @@
 		COUNT(br_no)
 	FROM
 		REVIEW
-	WHERE
-		br_no > 0 AND br_en='Y'	
+	WHERE 
+		br_en='Y'  
 	]]>
 	<include refid="search"></include>
 	</select>
