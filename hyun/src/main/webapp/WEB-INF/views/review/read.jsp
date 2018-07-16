@@ -259,7 +259,7 @@
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
 								<h5>댓글 쓰기
-								<input type="hidden" class="modTitle"/><input type="hidden" class="tt"/></h5>
+								<input type="hidden" class="modTitle"/><input type="hidden" /></h5>
 							</div>
 							<!-- body -->
 							<div class="modal-body" data-asNo  data-prNo>
@@ -268,7 +268,7 @@
 							</div>
 							<!-- footer -->
 							<div class="modal-footer">
-								<button type="button" id="ly12-addBtn" class="btn btn-success ly12-addBtn">저장</button>
+								<button type="button" id="ly12-addBtn" class="btn btn-success ly12-addBtn-new">저장</button>
 								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
 							</div>
 						</div>
