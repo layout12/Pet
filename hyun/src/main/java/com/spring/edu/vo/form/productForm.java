@@ -2,39 +2,50 @@ package com.spring.edu.vo.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
 
 @Data
 public class productForm {
 	
 	/*상품번호*/
-	private Integer pNo;
+	private Integer pdNo;
 	
 	/*상품이름*/
-	private String pName;
+	@NotEmpty(message="이름을 입력해주세요.")
+	private String pdName;
 
 	/*상품성별*/
-	private String pGender;
+	@NotEmpty(message="성별을 선택해주세요.")
+	private String pdGender;
 	
 	/*상품품종*/
-	private String pKind;
+	@NotEmpty(message="품종을 입력해주세요.")
+	private String pdKind;
 	
 	/*상품가격*/
-	private Integer pPrice;
+	@NotNull(message="가격을 입력해주세요.")
+	private Integer pdPrice;
 	
 	/*상품분양유무*/
-	private String pSale;
+	@NotEmpty(message="분양유무를 선택해주세요.")
+	private String pdSale;
 	
 	/*상품예방접종*/
-	private String pVaccine;
+	@NotEmpty(message="예방접종을 선택해주세요.")
+	private String pdVaccine;
 	
 	/*상품생년월일*/
-	private String pBirth;
+	@NotEmpty(message="생년월일을 입력해주세요.")
+	private String pdBirth;
 	
 	/*상품이미지*/
-	private String pImg;
+	private String pdImg;
 	
 	/*상품등록일*/
-	private Date pRegdate;
+	private Date pdRegdate;
 
 }
