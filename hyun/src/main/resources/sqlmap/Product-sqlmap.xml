@@ -1,20 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
-
+	<sql id="search">
+		<if test="searchType !=null">
+			<if test="searchType == 't'.toString()">
+			WHERE
+					INSTR(PD_NAME,#{keyword})>0
+			</if>
+			<if test="searchType == 'c'.toString()">
+			WHERE
+					INSTR(PD_KIND,#{keyword})>0
+			</if>
+		</if>
+	</sql>
+	<sql id="shopSearch">
+		<if test="searchType !=null">
+			<if test="searchType == 't'.toString()">
+			AND
+					INSTR(PD_KIND,#{keyword})>0
+			</if>
+		</if>
+	</sql>
 <select id="productList" resultType="ProductVo">
-SELECT
-	 PD_NO
-	,PD_NAME
-	,PD_GENDER
-	,PD_KIND
-	,PD_PRICE
-	,PD_SALE
-	,PD_VACCINE
-	,PD_BIRTH
-	,PD_IMG
-	,PD_REGDATE
-	FROM PRODUCT
+	SELECT
+		 PD_NO
+		,PD_NAME
+		,PD_GENDER
+		,PD_KIND
+		,PD_PRICE
+		,PD_SALE
+		,PD_VACCINE
+		,PD_BIRTH
+		,PD_IMG
+		,PD_REGDATE
+		FROM PRODUCT
+		ORDER BY PD_NO DESC
 </select>
+
+
+<select id="productDetail" parameterType="int" resultType="ProductVo">
+	SELECT
+		 PD_NO
+		,PD_NAME
+		,PD_GENDER
+		,PD_KIND
+		,PD_PRICE
+		,PD_SALE
+		,PD_VACCINE
+		,PD_BIRTH
+		,PD_IMG
+		,PD_REGDATE
+			FROM PRODUCT
+			WHERE PD_NO = #{pdNo}
+</select>
+
+<insert id="productInsert" parameterType="productForm">
+	INSERT INTO PRODUCT
+			(
+				PD_NO
+				,PD_NAME
+				,PD_GENDER
+				,PD_KIND
+				,PD_PRICE
+				,PD_SALE
+				,PD_VACCINE
+				,PD_BIRTH
+				,PD_IMG
+				,PD_REGDATE
+			
+			)
+		VALUES
+			(
+			PRODUCTSEQ.NEXTVAL
+			,#{pdName}
+			,#{pdGender}
+			,#{pdKind}
+			,#{pdPrice}
+			,#{pdSale}
+			,#{pdVaccine}
+			,#{pdBirth}
+			,#{pdImg}
+			,SYSDATE
+			)
+</insert>
+
+<update id="productUpdate" parameterType="productForm">
+	UPDATE 
+		PRODUCT SET 
+				PD_NAME=#{pdName}
+				,PD_GENDER=#{pdGender}
+				,PD_KIND=#{pdKind}
+				,PD_PRICE=#{pdPrice}
+				,PD_SALE=#{pdSale}
+				,PD_VACCINE=#{pdVaccine}
+				,PD_BIRTH=#{pdBirth}
+				,PD_IMG=#{pdImg}
+		WHERE PD_NO=#{pdNo}
+</update>
+
+<select id="productCount" resultType="int">
+	<![CDATA[
+	SELECT 
+		COUNT(pd_no)
+	FROM
+		PRODUCT
+	WHERE
+		pd_no > 0	
+	]]>
+</select>
+
+<select id="shopCount" resultType="int">
+	<![CDATA[
+	SELECT 
+		COUNT(pd_no)
+	FROM
+		PRODUCT
+	WHERE
+		pd_no > 0	AND PD_SALE='Y'
+	]]>
+	<include refid="shopSearch"></include>
+</select>
+
+<select id="productPageing" resultType="ProductVo">
+	<![CDATA[
+	SELECT 
+	B.RNUM, B.*
+	FROM(
+    	 SELECT 
+    	 ROWNUM AS RNUM, A.*
+    	 FROM(
+         	  SELECT 
+		         PD_NO
+				,PD_NAME
+				,PD_GENDER
+				,PD_KIND
+				,PD_PRICE
+				,PD_SALE
+				,PD_VACCINE
+				,PD_BIRTH
+				,PD_IMG
+				,PD_REGDATE
+         	  FROM PRODUCT
+         	  ]]>
+         	  <include refid="search"></include>
+         	  <![CDATA[
+              ORDER BY PD_NO DESC, PD_REGDATE DESC)A 
+         WHERE ROWNUM <=#{page}*#{perPageNum})B 
+    WHERE B.RNUM >=#{page}*10-9
+	]]>
+</select>
+
+<select id="shopPageing" resultType="ProductVo">
+	<![CDATA[
+	SELECT 
+	B.RNUM, B.*
+	FROM(
+    	 SELECT 
+    	 ROWNUM AS RNUM, A.*
+    	 FROM(
+         	  SELECT 
+		         PD_NO
+				,PD_NAME
+				,PD_GENDER
+				,PD_KIND
+				,PD_PRICE
+				,PD_SALE
+				,PD_VACCINE
+				,PD_BIRTH
+				,PD_IMG
+				,PD_REGDATE
+         	  FROM PRODUCT
+         	  WHERE PD_SALE='Y'
+         	  ]]>
+         	  <include refid="shopSearch"></include>
+         	  <![CDATA[
+              ORDER BY PD_NO DESC, PD_REGDATE DESC)A 
+         WHERE ROWNUM <=#{page}*#{perPageNum})B 
+    WHERE B.RNUM >=#{page}*9-8
+	]]>
+</select>
+
+<update id="productDelete" parameterType="int">
+	UPDATE
+		PRODUCT SET
+			PD_SALE='N'
+			WHERE PD_NO= #{pdNo}
+
+</update>
 
 </mapper>
