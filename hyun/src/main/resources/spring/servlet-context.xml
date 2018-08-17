@@ -59,11 +59,7 @@
         <interceptor>
             <mapping path="/review/register"/>
             <mapping path="/review/delete"/>
-          <!--   <mapping path="/review/read"/> -->
             <mapping path="/review/update"/>
-          <!--   <mapping path="/answer/**"/> -->
-          <!--   <mapping path="/answer/update/{brNo}/{asNo}"/>
-            <mapping path="/answer/delete/{asNo}"/> -->
             <mapping path="/admin/**"/>
             <beans:ref bean="authenticationInterceptor"/>
         </interceptor>
