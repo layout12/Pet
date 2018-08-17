@@ -6,7 +6,7 @@
 	<select id="listPaging" resultType="AnswerBoardVo">
 		<![CDATA[
 		SELECT
-		B.RNUM, B.*
+		B.RNUM, B.as_no, B.br_no, B.as_prno, B.ur_id, B.as_content, TO_CHAR(B.as_date+9/24,'yyyy-mm-dd hh24:mi:ss') as_date, B.as_update
 		FROM(
 			SELECT
 			ROWNUM AS RNUM, A.*
