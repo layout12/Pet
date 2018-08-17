@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 @Slf4j
 public class AopLogHandler {
 
-    @Around("within(com.spring.edu.contorller.*)")
+    @Around("within(com.spring.edu.controller.*)")
     public Object logBefore(ProceedingJoinPoint point) throws Throwable {
 
         long start = System.currentTimeMillis();
