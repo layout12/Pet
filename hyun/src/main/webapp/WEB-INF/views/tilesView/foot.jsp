@@ -8,9 +8,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="block clearfix">
-						<a href="#">
-							<img src="/resources/images/footer-logo.png" alt="">
-						</a>
+						<h4>PORTFOLIO</h4>
 						<p>
 							portfolio
 						</p>
@@ -26,26 +24,9 @@
 				</div> <!-- End Of Col-md-3 -->
 				<div class="col-md-4">
 					<div class="block">
-						<h4>Coming soon</h4>
+						<h4>SendEmail</h4>
 						<div class="media">
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
-						  	<a class="pull-left" href="#">
-						    	<img class="media-object" src="/resources/images/product-item.jpg" alt="...">
-						  	</a>
+						
 						</div>	<!-- End Of /.media -->
 					</div>	<!-- End Of /.block -->
 				</div> <!-- End Of Col-md-3 -->
@@ -61,33 +42,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="cash-out pull-left">
-							<li>
-								<a href="#">
-									<img src="/resources/images/American-Express.png" alt="">	
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="/resources/images/PayPal.png" alt="">	
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="/resources/images/Maestro.png" alt="">	
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="/resources/images/Visa.png" alt="">	
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="/resources/images/Visa-Electron.png" alt="">	
-								</a>
-							</li>
-						</ul>
 						<p class="copyright-text pull-right">YuHyunJae portfolio - Copyright 2018</p>
 					</div>	<!-- End Of /.col-md-12 -->	
 				</div>	<!-- End Of /.row -->	
