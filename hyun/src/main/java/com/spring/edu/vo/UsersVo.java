@@ -8,33 +8,33 @@ import lombok.Data;
 public class UsersVo {
 	
 	/*회원번호*/
-	private int uNo;
+	private int urNo;
 	
 	/*회원아이디*/
-	private String uId;
+	private String urId;
 	
 	/*회원비밀번호*/
-	private String uPw;
+	private String urPw;
 	
 	/*회원전화번호*/
-	private String uPhone;
+	private String urPhone;
 	
 	/*회원이메일*/
-	private String uEmail;
+	private String urEmail;
 	
 	/*회원주소*/
-	private String uAddr;
+	private String urAddr;
 	
 	/*회원등록일*/
-	private Date uRegdate;
+	private Date urRegdate;
 	
 	/*회원삭제일*/
-	private Date uDropdate;
+	private Date urDropdate;
 	
 	/*회원등급*/
-	private String uGrade;
+	private String urGrade;
 	
 	/*회원탈퇴여부*/
-	private String uYn;
+	private String urYn;
 
 }

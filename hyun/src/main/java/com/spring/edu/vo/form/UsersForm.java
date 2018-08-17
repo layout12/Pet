@@ -10,38 +10,38 @@ import lombok.Data;
 public class UsersForm {
 
 	   /*회원번호*/
-	   private Integer uNo;
+	   private Integer urNo;
 	   
 	   /*회원아이디*/
 	   @NotEmpty(message="아이디를 입력해주세요.")
-	   private String uId;
+	   private String urId;
 	   
 	   /*회원비밀번호*/
 	   @NotEmpty(message="비밀번호를 입력해주세요.")
-	   private String uPw;
+	   private String urPw;
 	   
 	   /*회원전화번호*/
 	   @NotEmpty(message="전화번호를 입력해주세요.")
-	   private String uPhone;
+	   private String urPhone;
 	   
 	   /*회원이메일*/
 	   @NotEmpty(message="이메일을 입력해주세요.")
-	   private String uEmail;
+	   private String urEmail;
 	   
 	   /*회원주소*/
 	   @NotEmpty(message="주소를 입력해주세요.")
-	   private String uAddr;
+	   private String urAddr;
 	   
 	   /*회원등록일*/
-	   private Date uRegdate;
+	   private Date urRegdate;
 	   
 	   /*회원삭제일*/
-	   private Date uDropdate;
+	   private Date urDropdate;
 	   
 	   /*회원등급*/
-	   private String uGrade;
+	   private String urGrade;
 	   
 	   /*회원탈퇴여부*/
-	   private String uYn;
+	   private String urYn;
 	   
 }
