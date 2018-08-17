@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.spring.edu.vo.AnswerBoardVo;
 import com.spring.edu.vo.BoardCriteria;
 import com.spring.edu.vo.ReviewVo;
 import com.spring.edu.vo.SearchCriteria;
