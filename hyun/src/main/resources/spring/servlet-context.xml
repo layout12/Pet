@@ -51,5 +51,38 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</beans:bean>
 	
+	    <!-- 인터셉터 객체 생성 -->
+    <beans:bean id="authenticationInterceptor" class="com.spring.edu.Interceptor.LoginCheckInterceptor">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/review/register"/>
+            <mapping path="/review/delete"/>
+          <!--   <mapping path="/review/read"/> -->
+            <mapping path="/review/update"/>
+          <!--   <mapping path="/answer/**"/> -->
+          <!--   <mapping path="/answer/update/{brNo}/{asNo}"/>
+            <mapping path="/answer/delete/{asNo}"/> -->
+            <mapping path="/admin/**"/>
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+    
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+			<beans:property name="host" value="smtp.gmail.com" />
+			<beans:property name="port" value="587" />
+			<beans:property name="username" value="emailtest4233@gmail.com" />
+			<beans:property name="password" value="qw1234!@#$" />
+			<beans:property name="javaMailProperties">
+				<beans:props>
+					<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+					<beans:prop key="mail.smtp.auth">true</beans:prop>
+					<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+					<beans:prop key="mail.smtp.timeout">true</beans:prop>			
+					<beans:prop key="mail.debug">true</beans:prop>
+				</beans:props>
+			</beans:property>
+		</beans:bean>
+
 	 </beans:beans>
-	 
