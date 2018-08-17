@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="schedule">
+
+<select id="scheduleList" resultType="ScheduleVo">
+	SELECT
+		SCHE_NO
+		,UR_ID
+		,PD_NO
+		,PD_NAME
+		,PD_SALE
+		,PD_SALEDATE
+		,PD_SALETIME
+		,PD_SALEADDR
+		,PD_SALECONTENT
+		FROM SCHEDULE
+</select>
+
+<select id="scheduleOne" parameterType="map" resultType="ScheduleVo">
+	SELECT
+		SCHE_NO
+		,UR_ID
+		,PD_NO
+		,PD_NAME
+		,PD_SALE
+		,PD_SALEDATE
+		,PD_SALETIME
+		,PD_SALEADDR
+		,PD_SALECONTENT
+		FROM SCHEDULE
+		WHERE PD_NO=#{pdNo} AND PD_NAME=#{pdName}
+</select>
+
+<insert id="scheduleInsert" parameterType="ScheduleVo">
+	INSERT INTO SCHEDULE
+			(	
+				SCHE_NO		
+				,UR_ID		
+				,PD_NO		
+				,PD_NAME		
+				,PD_SALE		
+				,PD_SALEDATE	
+				,PD_SALETIME	
+				,PD_SALEADDR	
+				,PD_SALECONTENT	
+			
+			)
+		VALUES
+			(
+			SCHEDULESEQ.NEXTVAL
+			,#{urId}
+			,#{pdNo}
+			,#{pdName}
+			,'N'
+			,#{pdSaleDate}
+			,#{pdSaleTime}
+			,#{pdSaleAddr}
+			,#{pdSaleContent}	
+			)
+		
+</insert>
+
+<select id="userId" resultType="UsersVo">
+	SELECT
+		ur_id
+		FROM USERS
+</select>
+
+<select id="productName" parameterType="int" resultType="String">
+	SELECT
+		 PD_NAME
+			FROM PRODUCT
+			WHERE PD_NO = #{pdNo}
+</select>
+
+</mapper>
