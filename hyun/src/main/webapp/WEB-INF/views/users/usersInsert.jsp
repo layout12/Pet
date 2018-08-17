@@ -1,46 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>UsersInsert</title>
-<script type="text/javascript">
-//전송버튼
-$("#savebutton").click(function(){
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>회원가입</title>
+<script type="text/javascript" src="/resources/js/usersInsert.js"></script>
+<style type="text/css">
+.wrapper {	
+	margin-top: 100px;
+  margin-bottom: 80px;
+}
 
-	var form = document.usersForm;
-    form.submit();
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #eee;
+  border: 1px solid;
+  border-color: #eee;  
 
-});
-</script>
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  width: 680;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
+.form-signin-heading{
+text-align: center;
+
+
+}
+
+</style>
+
 </head>
 <body>
 
-	<form:form modelAttribute="usersForm" name="usersForm"
-		action="/users/insertAfter" method="post">
-		<h3>회원 가입</h3>
-		<input placeholder="아이디를 입력해주세요" type="text" name="uNo"/>
-		<form:errors path="uId" />
-		<br>
-		<input placeholder="비밀번호를 입력해주세요" type="text" name="uPw"/>
-		<form:errors path="uPw" />
-		<br>
-		<input placeholder="전화번호를 입력해주세요" type="text" name="uPhone"/>
-		<form:errors path="uPhone" />
-		<br>
-		<input placeholder="이메일을 입력해주세요" type="text" name="uEmail"/>
-		<form:errors path="uEmail" />
-		<br>
-		<input placeholder="주소를 입력해주세요" type="text" name="uAddr"/>
-		<form:errors path="uAddr" />
-		<br>
-		<!-- <button class="btn btn-primary">회원 가입</button> -->
-		<input id="savebutton" type="submit" value="회원가입">
+<div id="userjoinForm" >
+
+<div class = "wrapper">
+	<form:form action="/users/insertAfter" class = "form-signin" method="post" >
+		<h1 class = "form-signin-heading">회원가입</h1>
+			<input type="text" class="form-control id" name="urId"  id="urId"  placeholder="ID를 입력해주세요" >
+			<br>
+			
+			<input type="password" class="form-control"  name="urPw" id="urPw" oninput="wordChk(this.value)" placeholder="비밀번호 입력 영문자와 숫자로 6~12자리까지 ">
+			<br>
+			
+			<input type="password" class="form-control"  name="urPwch"  id="urPwch" oninput="checkPwd()" placeholder="비밀번호를 확인해주세요" >
+			<br>
+			
+			<input type="text" class="form-control"  name="urPhone" id="urPhone" oninput="phoneChk(this.value)" placeholder="'-'를 제외한 전화번호를 입력해주세요 ">
+			<br>
+			
+			<input type="text" class="form-control" name="urEmail" id="urEmail" oninput="emailChk(this.value)" placeholder="EMAIL을 입력해주세요">
+			<br>
+			
+			<input type="text" class="form-control" onclick="goPopup(this)" readonly="readonly" name="urAddr" id="urAddr" placeholder="주소 입력을 위해 클랙해주세요">
+			
+			<input type="submit" value="등록" class = "btn btn-lg btn-primary signupbtn" disabled="disabled">
+			<input type="reset" value="취소" class= "btn btn-lg btn-primary cancelbtn">
 	</form:form>
+</div>
+</div>
 
 </body>
+
 </html>
