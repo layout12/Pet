@@ -37,9 +37,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
         	response.setContentType("text/html; charset=UTF-8");
             PrintWriter printwriter = response.getWriter();
             printwriter.print("<script>alert('로그인 후 이용가능합니다.'); history.go(-1);</script>");
-            printwriter.flush();
-            /*printwriter.close();*/
-          /* response.sendRedirect("/");*/         
+            printwriter.flush();       
             return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
         }else if(request.getRequestURI().contains("admin")) {
         	if(usersVo.getUrGrade().equals("admin")) {
