@@ -2,8 +2,178 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 
-<insert id="UsersInsert">
+	<sql id="search">
+		<if test="searchType !=null">
+			<if test="searchType == 't'.toString()">
+				WHERE 
+					INSTR(ur_id,#{keyword})>0
+			</if>
+			<if test="searchType == 'c'.toString()">
+				WHERE 
+					INSTR(ur_phone,#{keyword})>0
+			</if>
+			<if test="searchType == 'w'.toString()">
+				WHERE 
+					INSTR(ur_addr,#{keyword})>0
+			</if>
+		</if>
+	</sql>
 
+<insert id="UsersInsert" parameterType="UsersForm">
+	INSERT 
+		INTO 
+		USERS
+		(
+		UR_NO
+		,UR_ID
+		,UR_PW
+		,UR_PHONE
+		,UR_EMAIL
+		,UR_ADDR
+		,UR_REGDATE
+		,UR_DROPDATE
+		,UR_GRADE
+		,UR_YN
+		)
+		VALUES 
+		(
+		usersseq.nextval
+		,#{urId}
+		,#{urPw}
+		,#{urPhone}
+		,#{urEmail}
+		,#{urAddr}
+		,SYSDATE
+		,null
+		,'USER'
+		,'Y'
+		)
 </insert>
+
+<select id="UserName" resultType="UsersVo">
+	SELECT
+		ur_id
+		FROM USERS
+</select>
+
+<select id="UsersList" resultType="UsersVo">
+	<![CDATA[
+	SELECT 
+	B.RNUM, B.*
+	FROM(
+    	 SELECT 
+    	 ROWNUM AS RNUM, A.*
+    	 FROM(
+         	  SELECT 
+		         ur_no
+				,ur_id
+				,ur_pw
+				,ur_phone
+				,ur_email
+				,ur_addr
+				,ur_regdate
+				,ur_dropdate
+				,ur_grade
+				,ur_yn
+				FROM USERS
+         	  ]]>
+         	  <include refid="search"></include>
+         	  <![CDATA[
+              ORDER BY ur_no DESC, ur_regdate DESC)A 
+         WHERE ROWNUM <=#{page}*#{perPageNum})B 
+    WHERE B.RNUM >=#{page}*10-9
+	]]>
+</select>
+
+<select id="UsersCount" resultType="int">
+	<![CDATA[
+	SELECT 
+		COUNT(ur_no)
+	FROM
+		USERS
+	WHERE
+		ur_no > 0	
+	]]>
+</select>
+
+<select id="UsersLogin" resultType="UsersVo">
+	SELECT
+		*
+		FROM USERS
+		WHERE ur_id = #{urId}
+		AND ur_pw = #{urPw}
+</select>
+
+<select id="UserCheck" resultType="Integer">
+	SELECT
+		COUNT(*)
+		FROM USERS
+		WHERE ur_id = #{urId}
+		AND ur_pw = #{urPw}
+</select>
+
+<select id="UdundantInspection" parameterType="map" resultType="int">
+	SELECT 
+		count(*) 
+		FROM USERS 
+		WHERE ${column} = #{val}
+
+</select>
+
+<select id="UsersDetail" parameterType="int" resultType="UsersVo">
+	SELECT
+		ur_no
+		,ur_id
+		,ur_pw
+		,ur_phone
+		,ur_email
+		,ur_addr
+		,ur_regdate
+		,ur_dropdate
+		,ur_grade
+		,ur_yn
+		FROM USERS
+		WHERE UR_NO = #{urNo}
+</select>
+
+<update id="UsersDelete" parameterType="int">
+	UPDATE
+		USERS SET
+			ur_yn='N'
+			,ur_dropdate=SYSDATE
+			WHERE UR_NO= #{urNo}
+</update>
+
+<update id="UsersUpdate" parameterType="UsersForm">
+	UPDATE
+		USERS SET
+			ur_phone = #{urPhone}
+			,ur_email = #{urEmail}
+			,ur_addr = #{urAddr}
+			WHERE UR_NO= #{urNo}
+</update>
+
+<select id="UsersPwSearch" parameterType="UsersVo" resultType="String">
+	SELECT 
+		UR_ID 
+		FROM USERS 
+		WHERE UR_ID = #{urId} 
+		AND UR_EMAIL = #{urEmail}
+</select>
+
+<update id="UsersPwUpdate" parameterType="UsersVo"  >
+	UPDATE 
+		USERS SET 
+		UR_PW = #{urPw} 
+		WHERE UR_ID=#{urId}
+</update>
+
+<select id="UserIdSearch" parameterType="UsersForm" resultType="String">
+	SELECT 
+		UR_ID 
+		FROM USERS 
+		WHERE UR_PHONE=#{urPhone} 
+		AND UR_EMAIL = #{urEmail}
+</select>
 
 </mapper>
