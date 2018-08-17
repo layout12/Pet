@@ -17,6 +17,18 @@
 <script type="text/javascript">
 	var brNo =${read.brNo};  //현재 게시글 번호	
 	var page=1; //댓글 페이지 번호 초기화 
+	
+	$(document).ready(function (){ 	
+		// 로그인시 "수정","삭제" 버튼 보이게 함
+		Handlebars.registerHelper("eqAnswer", function(urId, block){
+			var accum = '';
+			if(urId == '${login.urId}'){
+				accum += block.fn();
+			}
+			return accum;
+		});
+	});
+	
 </script>
 
 </head>
@@ -80,8 +92,10 @@
 		    						</div>						
 								</div>
 							</div>	
-							<button type="button" class="btn btn-warning ly12-upd">수정</button>
-							<button type="submit" class="btn btn-danger">삭제</button>
+							<c:if test="${login.urId == read.urId || login.urGrade eq 'admin'}">
+								<button type="button" class="btn btn-warning ly12-upd">수정</button>
+								<button type="submit" class="btn btn-danger">삭제</button>
+							</c:if>
 							<button type="submit" class="btn btn-primary ly12-btnR ly12-goList">목록</button>				
 						</div>						
 					</form>
@@ -137,7 +151,7 @@
 				</div>
 				<!--// 게시판 수정 영역-->				
 				
-				<!---------------------------------------- 댓글 영역-------------------------------------------------------- -->
+				<!---------------------------------------- 댓글 영역--------------------------------------------------------->
 				<!-- 댓글리스트와 댓글 페이칭(토글가능) -->
 				<div class="col-md-12 panel-group" style="margin-top:20px;">	
 					<div class="panel panel-default">
@@ -146,17 +160,24 @@
 						 		<a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne"><span class="answerCount"></span></a>
 							</h4>
 						</div>
-						<div id="collapseOne" class="panel-collapse collapse in">
+						<div id="collapseOne" class="panel-collapse collapse in">							
 							<div class="panel-body">
-								<!--댓글입력 -->				
-								<h4><i class="far fa-comment-dots"></i>&nbsp;댓글을 남겨주세요.</h4>					 
+								<!--댓글입력 -->		
+								<c:if test="${not empty login }">
+								<h4><i class="far fa-comment-dots"></i>&nbsp;댓글을 남겨주세요.</h4>	
 								<div>						
 									<p>
-										<input type="text" class="form-control newUrId" name="urId" placeholder="이름을 입력해주세요"/>
+										<input type="text" class="form-control newUrId" value="${login.urId }" readonly="readonly" placeholder="이름을 입력해주세요"/>
 									</p>
 									<textarea class="form-control newAsContent" rows="3" name="asContent" placeholder="댓글을 남겨주세요"></textarea>
 									<button id="ly12-addBtn" class="btn btn-primary ly12-addBtn">저장</button>
 								</div>
+								</c:if>
+								
+								<c:if test="${empty login }">
+									<h5 style="margin:0 0 0 380px"><i class="far fa-comment-dots"></i>&nbsp;<a data-toggle="modal" data-target="#myModal" href="#">
+								로그인 </a>후 이용하실 수 있습니다. </h5>	
+								</c:if>
 								<!--// 댓글입력 -->
 												
 								<!-- 댓글리스트 -->			
@@ -164,15 +185,17 @@
 									
 								</ul> 
 								<script id="template" type="text/x-handlebars-template">
-									{{#each .}}
+									{{#each .}}		
 										{{#fn_asIf}}
 											<li class="ly12-answerLi page-item" data-asNo={{asNo}} data-prNo={{asPrno}}>
 												<span class="ly12-answerUrId"><i class="fas fa-user-circle"></i>&nbsp;{{urId}}</span>
+												{{#eqAnswer urId}}
 												<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
 													<small><i class="fa fa-times">삭제</i></small>
 												</a>										
 												<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
-													<small><i class="fa fa-edit">수정</i></small></a>									
+													<small><i class="fa fa-edit">수정</i></small></a>	
+												{{/eqAnswer}}								
 												<span style="color:#777;"><small>{{helperAsDate asDate}}</small></span>	
 												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>
 												<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>
@@ -180,11 +203,13 @@
 										{{else}}
 											<li class="ly12-answerLi page-item ly12-answerRe" data-asNo={{asNo}} data-prNo={{asPrno}}>
 												<span class="ly12-answerUrId"><i class="fas fa-user-circle"></i>&nbsp;{{urId}}</span>
+												{{#eqAnswer urId}}				
 												<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
 													<small><i class="fa fa-times">삭제</i></small>
-												</a>										
+												</a>																					
 												<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
-													<small><i class="fa fa-edit">수정</i></small></a>									
+													<small><i class="fa fa-edit">수정</i></small></a>	
+												{{/eqAnswer}}									
 												<span style="color:#777;"><small>{{helperAsDate asDate}}</small></span>	
 												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>
 												<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>
@@ -263,7 +288,7 @@
 							</div>
 							<!-- body -->
 							<div class="modal-body" data-asNo  data-prNo>
-								<p><input type="text" class="form-control newUrId2" name="urId" placeholder="이름을 입력해주세요"/></p>
+								<p><input type="text" class="form-control newUrId2" name="urId" placeholder="이름을 입력해주세요" value="${login.urId }" readonly="readonly"></p>
 								<textarea name="asContent" class="form-control newAsContent2" rows="3" placeholder="댓글을 남겨주세요"></textarea>
 							</div>
 							<!-- footer -->
@@ -274,8 +299,7 @@
 						</div>
 					</div>
 				</div>
-				<!--// 댓글추가  모달창 -->	
-	
+				<!--// 댓글추가  모달창 -->					
 				<!----------------------------------------// 댓글 영역-------------------------------------------------------- -->
 	
 			</div>	
