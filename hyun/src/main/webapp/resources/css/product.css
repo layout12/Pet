@@ -1,0 +1,7 @@
+@charset "EUC-KR";
+
+/*부트스트랩용 css외에 다른 css 스타일은 만든이 구분자를 앞에 넣어줌. 여기선 ly12*/
+textarea{resize:none;}
+
+/*padding,margin 공통*/
+.ly12-titText{display:inline-block; font-size:25px; font-weight:bold; margin-top:10px; color:#333;}
