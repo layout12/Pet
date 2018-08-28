@@ -9,57 +9,36 @@
 	<section id="top">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-7">
-				</div>
-				<div class="col-md-3 clearfix">
-					<ul class="login-cart">
-				<c:choose>
-					<c:when test="${empty login.urId}">
-							<li>
-							<a data-toggle="modal" data-target="#myModal" href="#">
-								Login
-							</a>
-							<a href="/users/logout">
-								logout
-							</a>
-							<a href="/users/usersInsert">
-								regist
-							</a>
-						</li>
-					</c:when>
-					<c:when test="${login.urGrade eq 'admin'}">
-							<li>
-							<a href="/admin/main">
-								${login.urId }
-							</a>
-							<a href="/users/logout">
-								logout
-							</a>
-							<a href="/users/detail?urNo=${login.urNo }">
-								myPage
-							</a>
-						</li>
-					</c:when>
+				<div class="col-md-3 clearfix" style="float:right">
+					<ul class="login-cart" style="display:inline">
+						<c:choose>
+							<c:when test="${empty login.urId}">
+								<li style="float:right;">
+									<a data-toggle="modal" data-target="#myModal" href="#">	로그인</a>
+									<a href="/users/usersInsert">회원가입</a>
+								</li>
+							</c:when>
+							<c:when test="${login.urGrade eq 'admin'}">
+								<li>
+									<a href="/admin/productAdmin" target="_blank">관리자</a>
+									<a href="/users/logout">로그아웃</a>
+									<a href="/users/detail?urNo=${login.urNo }">회원정보</a>
+								</li>
+							</c:when>
 							<c:otherwise>
-						  	<li>
-						  	<a>
-								${login.urId }
-							</a>
-							<a href="/users/logout">
-								logout
-							</a>
-							<a href="/users/detail?urNo=${login.urNo }">
-								myPage
-							</a>
-						  	</c:otherwise>
-				</c:choose>
+								 <li style="width:105%">
+								  	<a>	${login.urId }</a>
+									<a href="/users/logout">로그아웃</a>
+									<a href="/users/detail?urNo=${login.urNo }">회원정보</a>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 			</div> <!-- End Of /.row -->
 		</div>	<!-- End Of /.Container -->
 		<!-- MODAL Start================================================== -->
 <script type="text/javascript">
-$(document).ready(function (){
+$(document).ready(function (){		
 	$('#save').click(function(){
 		var formData =$('#login_form').serialize();
 		$.ajax({
@@ -76,9 +55,8 @@ $(document).ready(function (){
 	        }
 		});
 	});
-	
-});
 
+});
 </script>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -171,11 +149,11 @@ $(document).ready(function (){
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
 		        	<!-- <li class="active"><a href="/">HOME</a></li> -->
-		        	<li><a href="#">INTRODUCE</a></li>
-					<li><a href="/product/shop">SHOP</a></li>
-					<li><a href="/review/listPaging">REVIEW</a></li>
-					<li><a href="#">QnA</a></li>
-					<li><a href="#">SKILL</a></li>
+		        	<li><a href="#">펫 하우스 소개</a></li>
+					<li><a href="/product/shop">펫 분양</a></li>
+					<li><a href="/review/listPaging">분양후기</a></li>
+					<li><a href="#">질문과답변</a></li>
+					<li><a href="#">오시는길</a></li>
 					<!-- End of /.dropdown -->
 
 					
