@@ -11,7 +11,8 @@
 
 	<definition name="base" template="/WEB-INF/views/tilesView/layout.jsp">
 		<put-attribute name="top"		value="/WEB-INF/views/tilesView/top.jsp" />
-		<put-attribute name="foot"		value="/WEB-INF/views/tilesView/foot.jsp" />
+		<put-attribute name="footer"		value="/WEB-INF/views/tilesView/footer.jsp" />
+	<!-- 	<put-attribute name="foot"		value="/WEB-INF/views/tilesView/foot.jsp" /> -->
 	</definition> 
 	
 	<definition name="admin/*.admin" extends="admin-base">
