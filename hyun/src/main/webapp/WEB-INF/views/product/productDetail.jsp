@@ -187,20 +187,24 @@ $(function() {
 						<h3 class="product-title">${productDetail.pdName}</h3>
 							<br/>
 							<br/>
-						<p class="product-description">댕댕이를 분양해 보세요</p>
-						<h4 class="price">price: <span>${productDetail.pdPrice} 원</span></h4>
-						<br/>
-						<h5 class="sizes">kind:
-							<span class="size" data-toggle="tooltip">${productDetail.pdKind}</span>
-						</h5>
-						<h5 class="sizes">Gender:
-							<span class="size" data-toggle="tooltip" >${productDetail.pdGender}</span>
-						</h5>
-						<h5 class="sizes">Vaccine:
-							<span class="size" data-toggle="tooltip" >${productDetail.pdVaccine}</span>
-						</h5>
+						<p class="product-description">귀여운 우리 펫들을 보시고 함께하고자 하신다면 연락바랍니다.</p>
+						
+						<table class="table table-bordered" style="background-color:#fff">
+							<tr>
+								<th class="success">분양금액</th>
+								<td>${productDetail.pdPrice} 원</td>
+							</tr>
+							<tr>
+								<th class="success">성별</th>
+								<td>${productDetail.pdGender}</td>
+							</tr>
+							<tr>
+								<th class="success">예방접종</th>
+								<td>${productDetail.pdVaccine}</td>
+							</tr>
+						</table>						
 						<div class="action">
-							<button class="like btn btn-default" type="button">목록</button>
+							<button class="btn btn-success btn-lg" type="button">목록</button>
 						</div>
 					</div>
 				</div>
