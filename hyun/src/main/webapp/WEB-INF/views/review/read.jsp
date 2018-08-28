@@ -10,15 +10,24 @@
 <style type="text/css">
 	#ly12-updateForm{display:none;}
 </style>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="/resources/js/board_js.js" type="text/javascript"></script>
 <script src="/resources/js/answer_js.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var brNo =${read.brNo};  //현재 게시글 번호	
-	var page=1; //댓글 페이지 번호 초기화 
-	
-	$(document).ready(function (){ 	
+	var page=1; //댓글 페이지 번호 초기화 	
+	$(document).ready(function (){ 		
+		function removeTag(html) {
+			return str.replace(/(<([^>]+)>)/gi, "");
+		}
+
+		function doRemoveTag() {
+			var beforeText = $("[name=brContent]").val();
+			var afterText = removeTag( beforeText );
+			$("[name=brContent]").val( afterText );
+		}
+		
 		// 로그인시 "수정","삭제" 버튼 보이게 함
 		Handlebars.registerHelper("eqAnswer", function(urId, block){
 			var accum = '';
@@ -26,7 +35,7 @@
 				accum += block.fn();
 			}
 			return accum;
-		});
+		});		
 	});
 	
 </script>
@@ -36,9 +45,13 @@
 	<section id="ly12_board-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<ol class="breadcrumb pull-right" style="background-color:white;">
+					<li><a href="/">Home</a></li>
+					<li class="active">분양후기</li>
+				</ol>
+				<div class="col-md-12 ly12-mgT50">
 					<div class="products-heading">
-						<h2>Review 게시판</h2>
+						<h2>분양후기</h2>
 					</div>
 				</div>
 			</div>
@@ -53,7 +66,7 @@
 						<input type="hidden" name="searchType" value="${cri.searchType }">
 						<input type="hidden" name="keyword" value="${cri.keyword }">
 															
-						<div class="col-md-12">					
+						<div class="col-md-12 clearfix">					
 							<div class="form-horizontal">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">번호</label>
@@ -140,7 +153,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">내용</label>
 									<div class="col-sm-10">
-		      							 <textarea name="brContent" class="form-control" rows="3">${read.brContent }</textarea>
+		      							 <textarea id="ly12-editor" name="brContent" class="form-control" rows="3">${read.brContent }</textarea>		      							 
 		    						</div>						
 								</div>
 							</div>	
@@ -164,7 +177,7 @@
 							<div class="panel-body">
 								<!--댓글입력 -->		
 								<c:if test="${not empty login }">
-								<h4><i class="far fa-comment-dots"></i>&nbsp;댓글을 남겨주세요.</h4>	
+								<h4><i class="fa fa-comment-dots"></i>&nbsp;댓글을 남겨주세요.</h4>	
 								<div>						
 									<p>
 										<input type="text" class="form-control newUrId" value="${login.urId }" readonly="readonly" placeholder="이름을 입력해주세요"/>
@@ -175,7 +188,7 @@
 								</c:if>
 								
 								<c:if test="${empty login }">
-									<h5 style="margin:0 0 0 380px"><i class="far fa-comment-dots"></i>&nbsp;<a data-toggle="modal" data-target="#myModal" href="#">
+									<h5 style="margin:0 0 0 380px"><i class="fa fa-comment-dots"></i><a data-toggle="modal" data-target="#myModal" href="#">
 								로그인 </a>후 이용하실 수 있습니다. </h5>	
 								</c:if>
 								<!--// 댓글입력 -->
@@ -188,31 +201,33 @@
 									{{#each .}}		
 										{{#fn_asIf}}
 											<li class="ly12-answerLi page-item" data-asNo={{asNo}} data-prNo={{asPrno}}>
-												<span class="ly12-answerUrId"><i class="fas fa-user-circle"></i>&nbsp;{{urId}}</span>
+												<span class="ly12-answerUrId"><i class="fa fa-user-circle"></i>&nbsp;{{urId}}</span>
 												{{#eqAnswer urId}}
-												<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
-													<small><i class="fa fa-times">삭제</i></small>
-												</a>										
-												<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
-													<small><i class="fa fa-edit">수정</i></small></a>	
+													<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
+														<small><i class="fa fa-times">삭제</i></small>
+													</a>										
+													<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
+														<small><i class="fa fa-edit">수정</i></small>
+													</a>	
 												{{/eqAnswer}}								
 												<span style="color:#777;"><small>{{helperAsDate asDate}}</small></span>	
-												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>
-												<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>
+												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>												
+													<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>												
 											</li>
 										{{else}}
 											<li class="ly12-answerLi page-item ly12-answerRe" data-asNo={{asNo}} data-prNo={{asPrno}}>
-												<span class="ly12-answerUrId"><i class="fas fa-user-circle"></i>&nbsp;{{urId}}</span>
+												<span class="ly12-answerUrId"><i class="fa fa-user-circle"></i>&nbsp;{{urId}}</span>
 												{{#eqAnswer urId}}				
-												<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
-													<small><i class="fa fa-times">삭제</i></small>
-												</a>																					
-												<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
-													<small><i class="fa fa-edit">수정</i></small></a>	
+													<a href="#" class="pull-right delBtn" data-target="#delModal" data-toggle="modal">
+														<small><i class="fa fa-times">삭제</i></small>
+													</a>																					
+													<a href="#" class="pull-right modBtn" data-target="#modModal" data-toggle="modal" style="padding-right:10px;">
+														<small><i class="fa fa-edit">수정</i></small>
+													</a>	
 												{{/eqAnswer}}									
 												<span style="color:#777;"><small>{{helperAsDate asDate}}</small></span>	
-												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>
-												<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>
+												<div class="ly12-answerAsCon">{{helperEscape asContent}}</div>												
+													<button type="button" class="btn btn-default btn-xs ly12-mgR5 addBtn" data-target="#addModal" data-toggle="modal">댓글쓰기</button>												
 											</li>
 										{{/fn_asIf}}
 									{{/each}}
