@@ -83,7 +83,7 @@ $(document).ready(function (){
 		
 		$.ajax({
 			type :"post",
-			url : "/answer/"+ brNo + asPrno,
+			url : "/answer/"+ brNo + "/" + asPrno,
 			headers : {
 				"Content-Type" : "application/json",
 				"X-HTTP-Method-Override" : "POST"
@@ -155,15 +155,6 @@ $(document).ready(function (){
 		//댓글 존재 시
 		asCount.html("("+totalCount+")개의 댓글이 있습니다.");
 	}
-		
-/*	//댓글 목록 출력 함수
-	function printAnswer(answerArr, targetArea, templateObj){
-		var template=Handlebars.compile(templateObj.html());
-		var html=template(answerArr);
-		
-		$(".ly12-answerLi").remove();
-		targetArea.html(html);	
-	}*/
 	
 	//댓글 목록 출력 함수
 	function printAnswer(answerArr, targetArea, templateObj){
