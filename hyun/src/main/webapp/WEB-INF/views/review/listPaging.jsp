@@ -40,16 +40,21 @@
 			self.location = "register";
 		});
 	
-	});
+	});	
 </script>
+<script src="/resources/js/answer_js.js" type="text/javascript"></script>
 </head>
 <body>
 	<section id="ly12_board-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+					<ol class="breadcrumb pull-right" style="background-color:white;">
+					  	<li><a href="/">Home</a></li>
+					  	<li class="active">분양후기</li>
+					</ol>
+				<div class="col-md-12 ly12-mgT50">
 					<div class="products-heading">
-						<h2>Review 게시판</h2>
+						<h2>분양후기</h2>
 					</div>
 				</div>
 			</div>
@@ -99,8 +104,8 @@
 					<table class="table table-hover">
 						<colgroup>
 							<col width="10%">
-							<col width="40%">
-							<col width="10%">
+							<col width="35%">
+							<col width="15%">
 							<col width="10%">
 							<col width="10%">
 						</colgroup>	
@@ -124,7 +129,14 @@
 									<c:forEach items="${listAll }" var="listAll">
 									<tr>
 										<td>${listAll.brNo }</td>
-										<td><a href="/review/read${paging.makeSearch(paging.cri.page)}&br_no=${listAll.brNo }">${listAll.brTitle }</a></td>
+										<td style="text-align:left;">								
+											<a href="/review/read${paging.makeSearch(paging.cri.page)}&br_no=${listAll.brNo }">
+												${listAll.brTitle }
+												<c:if test="${listAll.ansCount>0}">
+												<span style="color:red;">(${listAll.ansCount })</span>												
+												</c:if>
+											</a>										
+										</td>
 										<td>${listAll.urId}</td>
 										<td><fmt:formatDate value="${listAll.brDate }" pattern="yyyy.MM.dd" /></td>
 										<td>${listAll.brHits }</td>	
