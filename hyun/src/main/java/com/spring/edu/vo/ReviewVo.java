@@ -30,5 +30,8 @@ public class ReviewVo {
 	/*게시판 삭제여부*/
 	private char brEn;
 	
+	/*게시판 댓글 수*/
+    private int ansCount;
+	
 }
 
