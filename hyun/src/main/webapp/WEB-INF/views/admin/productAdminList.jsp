@@ -9,35 +9,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-$(function() {	
-	/*검색 버튼 클릭 시 이벤트 핸들러*/
-	$("#ly12-searchBtn").on("click", function(event) {
-			var searchType = $("select[name=searchType]").val();
-			var keyword = +encodeURIComponent($("input[name=keyword]").val());
-	
-			console.log("${paging.makeQuery(1)}");
-	
-			self.location = "/admin/productAdmin" 
-			+ "?page=${cri.page}&perPageNum=${cri.perPageNum}"							
-			+ "&searchType=" 
-			+ searchType 
-			+ "&keyword="
-			+ keyword;
+	<script type="text/javascript">
+	$(function() {	
+		/*검색 버튼 클릭 시 이벤트 핸들러*/
+		$("#ly12-searchBtn").on("click", function(event) {
+				var searchType = $("select[name=searchType]").val();
+				var keyword = +encodeURIComponent($("input[name=keyword]").val());
+		
+				console.log("${paging.makeQuery(1)}");
+		
+				self.location = "/admin/productAdmin" 
+				+ "?page=${cri.page}&perPageNum=${cri.perPageNum}"							
+				+ "&searchType=" 
+				+ searchType 
+				+ "&keyword="
+				+ keyword;
+		});
+		
+		/*전체글 보기 버튼*/
+		$('.btn-info').on("click", function() {
+			self.location = "/admin/productAdmin";
+		});
 	});
+	</script>
 	
-	/*전체글 보기 버튼*/
-	$('.btn-info').on("click", function() {
-		self.location = "/admin/productAdmin";
-	});
-});
-</script>
 	<section id="topic-header">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<h1>ProductAdminList</h1>
-					<p>AdminProducts</p>
+					<h1>분양현황 리스트</h1>
+					<p>분양대기중이거나 분양된 현황을 관리합니다.</p>					
 				</div>	<!-- End of /.col-md-4 -->
 			</div>	<!-- End of /.row -->
 		</div>	<!-- End of /.container -->
@@ -77,7 +78,7 @@ $(function() {
 <section id="shop">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9">
+			<div class="col-md-12">
 			<table style="width:100%" class="table table-condensed table-hover">
 						  <col width="5%">
 						  <col width="10%">
