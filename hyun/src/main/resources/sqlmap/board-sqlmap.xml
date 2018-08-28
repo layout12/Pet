@@ -100,8 +100,12 @@
     	 SELECT 
     	 ROWNUM AS RNUM, A.*
     	 FROM(
-         	  SELECT *
-         	  FROM REVIEW  
+         	  SELECT R.*,(
+         	  	SELECT COUNT(*)
+         	  	FROM ANSWER_BOARD
+         	  	WHERE BR_NO=R.BR_NO
+         	  )AS ANS_COUNT
+         	  FROM REVIEW R 
          	  WHERE br_en='Y'       	 
     ]]>
     <include refid="search"></include>
