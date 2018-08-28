@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>shop</title>
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"> -->
 </head>
 <body>
 
@@ -13,13 +14,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<h1>Shop</h1>
-					<p>Products</p>
+					<h1>펫 분양</h1>
+					<small>새로운 가족을 기다리고 있는 친구들을 만나보세요! </small>
 				</div>	<!-- End of /.col-md-4 -->
 				<div class="col-md-8 hidden-xs">
 					<ol class="breadcrumb pull-right">
 					  	<li><a href="/">Home</a></li>
-					  	<li class="active">Shop</li>
+					  	<li class="active">펫 분양</li>
 					</ol>
 				</div>	<!-- End of /.col-md-8 -->
 			</div>	<!-- End of /.row -->
@@ -36,14 +37,14 @@
 			<div class="row">
 				<div class="col-md-9">
 					<div class="products-heading">
-						<h2>PRODUCTS</h2>
+						<h2>분양대기</h2>
 					</div>	<!-- End of /.Products-heading -->
 					<div class="product-grid">
 					    <ul>
 					<c:choose>
 					<c:when test="${empty productList}">
 							
-					  			<li colspan="10">--------상품이없습니다--------</li>
+					  			<li>--------상품이없습니다--------</li>
 					  		
 					</c:when>
 					<c:otherwise>
@@ -98,23 +99,23 @@
 							<h4>Categories</h4>
 							<div class="list-group">
 								<a href="/product/shop?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=t&keyword=웰시코기" class="list-group-item">
-									<i class="fa  fa-dot-circle-o"></i>
+									<i class="fa fa-angle-right"></i>
 									웰시코기
 								</a>
 								<a href="/product/shop?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=t&keyword=푸들" class="list-group-item">
-									<i class="fa  fa-dot-circle-o"></i>
+									<i class="fa fa-angle-right"></i>
 									푸들
 								</a>
 								<a href="/product/shop?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=t&keyword=치와와" class="list-group-item">
-									<i class="fa  fa-dot-circle-o"></i>
+									<i class="fa fa-angle-right"></i>
 									치와와
 								</a>
 								<a href="/product/shop?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=t&keyword=말티즈" class="list-group-item">
-									<i class="fa  fa-dot-circle-o"></i>
+									<i class="fa fa-angle-right"></i>
 									말티즈
 								</a>
 								<a href="/product/shop?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=t&keyword=보스턴테리어" class="list-group-item">
-									<i class="fa  fa-dot-circle-o"></i>
+									<i class="fa fa-angle-right"></i>
 									보스턴테리어
 								</a>
 							</div>
