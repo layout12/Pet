@@ -1,11 +1,12 @@
 ------------- Common-CSS----------------*/
 
-body { font-family: 'Open Sans', sans-serif; color: #555; font-size: 14px; font-weight: 300; }
+body { font-family: 'Noto Sans','Noto Sans Korean','Apple SD Gothic Neo', 'Malgun Gothic','Nanum Gothic', 'Noto Sans'; color: #555; font-size: 14px; font-weight: 300; }
 li { list-style: none;}
 a:hover { text-decoration: none; }
 
 /*Headers*/
-h1,h2,h3,h4,h5,h6 { font-family: 'Yanone Kaffeesatz', sans-serif;color: #555}
+/* h1,h2,h3,h4,h5,h6 { font-family: 'Yanone Kaffeesatz', sans-serif;color: #555} */
+h1,h2,h3,h4,h5,h6 { font-family: 'Noto Sans','Noto Sans Korean','Apple SD Gothic Neo', 'Malgun Gothic','Nanum Gothic', 'Noto Sans',sans-seri; color: #555}
 
 h1 { font-size: 50px; }
 h2 { font-size: 40px; }
@@ -823,17 +824,6 @@ footer .block span {
 	padding: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
  
 #blog .blog-zone {
     margin: 30px 0 0 0;
@@ -1214,3 +1204,37 @@ footer .block span {
 .top-catagori-heading {
 	margin-top: 0;
 }
+
+/*	2018.08.24 새로추가.......
+    ==================================================*/
+.text-uppercase {text-transform:uppercase!important; color:#fff; font-family:Montserrat; font-weight:600;}
+.mb-4, .my-4 {margin-bottom:1.5rem!important;}
+.list-inline { padding-left: 0;  list-style: none;}
+.far {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 100%;
+  border:2px solid #fff;
+
+}
+
+.far:hover {border:2px solid #ffff00; background-color:#ffff00; }
+.fa-facebook, .fa-twitter, .fa-instagram {
+  background: transparent;
+  color: #fff;
+}
+.fa-facebook{
+  padding:20px 25px;
+  background: transparent;
+  color: #fff;
+}
+
+.findus{color:#888; text-align:left;}
+.findus li{margin-bottom:5px;}
+
+
+
+ 
