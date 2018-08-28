@@ -5,6 +5,8 @@
  */
 body {
   background-color: #f8f8f8;
+  font-family: 'Noto Sans','Noto Sans Korean','Apple SD Gothic Neo', 'Malgun Gothic','Nanum Gothic', 'Noto Sans';
+  font-size:12px;
 }
 #wrapper {
   width: 100%;
@@ -431,4 +433,6 @@ table.dataTable thead .sorting:after {
     border-right-width: 14px;
     border-left-width: 0;
   }
+  
+  
 }
