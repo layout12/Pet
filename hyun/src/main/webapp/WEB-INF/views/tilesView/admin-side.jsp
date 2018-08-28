@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+
 <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -13,24 +15,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/admin/productSchedule"><i class="fa fa-dashboard fa-fw"></i> Schedule</a>
+                            <a href="/admin/productSchedule"><i class="fa fa-dashboard fa-fw"></i> 분양 스케쥴</a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/productAdmin"><i class="fa fa-table fa-fw"></i> 분양현황 리스트</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="/admin/userAdminList"><i class="fa fa-edit fa-fw"></i> 회원리스트</a>
                         </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
+                      <!--   <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -52,7 +46,7 @@
                                     <a href="grid.html">Grid</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            /.nav-second-level
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -79,11 +73,11 @@
                                             <a href="#">Third Level Item</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
+                                    /.nav-third-level
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                            /.nav-second-level
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -94,9 +88,10 @@
                                     <a href="login.html">Login Page</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                          /.nav-second-level 
+                        </li>-->
                     </ul>
+                    
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
