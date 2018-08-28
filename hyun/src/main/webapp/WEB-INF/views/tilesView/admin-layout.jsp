@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-	<title>Portfolio</title>
+	<title>펫하우스 관리자화면</title>
     
     <!-- CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,16 +32,16 @@
 <body>
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-		            <div class="navbar-header">
-		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		                    <span class="sr-only">Toggle navigation</span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                </button>
-		                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
-		            </div>
-		            <!-- /.navbar-header -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">펫하우스 관리자화면</a>
+			</div>
+			<!-- /.navbar-header -->
 			<tiles:insertAttribute name="admin-top" />
 			<tiles:insertAttribute name="admin-side" />
 		</nav>
