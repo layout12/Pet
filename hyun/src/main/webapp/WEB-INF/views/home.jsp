@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="products-heading">
-						<h2>NEW PRODUCTS</h2>
+						<h2>새로운 펫소개</h2>
 					</div>
 				</div>
 			</div>
